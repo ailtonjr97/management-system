@@ -1,0 +1,577 @@
+<%- include('partials/header') %>
+
+<style>
+.stripe{
+  background-image: url("/images/depositphotos.jpg");
+}
+
+.button-8 {
+  background-color: #e1ecf4;
+  border-radius: 3px;
+  border: 1px solid #7aa7c7;
+  box-shadow: rgba(255, 255, 255, .7) 0 1px 0 0 inset;
+  box-sizing: border-box;
+  color: #39739d;
+  cursor: pointer;
+  display: inline-block;
+  font-family: -apple-system,system-ui,"Segoe UI","Liberation Sans",sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.15385;
+  margin: 0;
+  outline: none;
+  padding: 8px .8em;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: baseline;
+  white-space: nowrap;
+}
+
+.button-8:hover,
+.button-8:focus {
+  background-color: #b3d3ea;
+  color: #2c5777;
+}
+
+.button-8:focus {
+  box-shadow: 0 0 0 4px rgba(0, 149, 255, .15);
+}
+
+.button-8:active {
+  background-color: #a0c7e4;
+  box-shadow: none;
+  color: #2c5777;
+}
+
+.button-37 {
+  background-color: #17a2b8;
+  border: 1px solid #17a2b8;
+  border-radius: 4px;
+  box-shadow: rgba(0, 0, 0, .1) 0 2px 4px 0;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  font-family: "Akzidenz Grotesk BQ Medium", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  outline: none;
+  outline: 0;
+  padding: 10px 25px;
+  text-align: center;
+  transform: translateY(0);
+  transition: transform 150ms, box-shadow 150ms;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.button-37:hover {
+  box-shadow: rgba(0, 0, 0, .15) 0 3px 9px 0;
+  transform: translateY(-2px);
+}
+
+@media (min-width: 768px) {
+  .button-37 {
+    padding: 10px 30px;
+  }
+}
+
+.button-38 {
+  background-color: #ffc107;
+  border: 1px solid #ffc107;
+  border-radius: 4px;
+  box-shadow: rgba(0, 0, 0, .1) 0 2px 4px 0;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  font-family: "Akzidenz Grotesk BQ Medium", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  outline: none;
+  outline: 0;
+  padding: 10px 25px;
+  text-align: center;
+  transform: translateY(0);
+  transition: transform 150ms, box-shadow 150ms;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.button-38:hover {
+  box-shadow: rgba(0, 0, 0, .15) 0 3px 9px 0;
+  transform: translateY(-2px);
+}
+
+@media (min-width: 768px) {
+  .button-38 {
+    padding: 10px 30px;
+  }
+}
+
+.button-39 {
+  background-color: #dc3545;
+  border: 1px solid #dc3545;
+  border-radius: 4px;
+  box-shadow: rgba(0, 0, 0, .1) 0 2px 4px 0;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  font-family: "Akzidenz Grotesk BQ Medium", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  outline: none;
+  outline: 0;
+  padding: 10px 25px;
+  text-align: center;
+  transform: translateY(0);
+  transition: transform 150ms, box-shadow 150ms;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.button-39:hover {
+  box-shadow: rgba(0, 0, 0, .15) 0 3px 9px 0;
+  transform: translateY(-2px);
+}
+
+@media (min-width: 768px) {
+  .button-39 {
+    padding: 10px 30px;
+  }
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+
+.wrapper {
+  display: inline-flex;
+  list-style: none;
+}
+
+.wrapper .icon {
+  position: relative;
+  background: #83b5d9;
+  border-radius: 5px;
+  padding: 15px;
+  margin: 5px;
+  width: 40px;
+  height: 40px;
+  font-size: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.wrapper .tooltip {
+  position: absolute;
+  top: 0;
+  font-size: 14px;
+  background: #ffffff;
+  color: #ffffff;
+  padding: 5px 8px;
+  border-radius: 5px;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.wrapper .tooltip::before {
+  position: absolute;
+  content: "";
+  height: 8px;
+  width: 8px;
+  background: #ffffff;
+  bottom: -3px;
+  left: 50%;
+  transform: translate(-50%) rotate(45deg);
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.wrapper .icon:hover .tooltip {
+  top: -45px;
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.wrapper .icon:hover span,
+.wrapper .icon:hover .tooltip {
+  text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.1);
+}
+
+.wrapper .salvar:hover,
+.wrapper .salvar:hover .tooltip,
+.wrapper .salvar:hover .tooltip::before {
+  background: #1877F2;
+  color: #ffffff;
+}
+
+.wrapper .twitter:hover,
+.wrapper .twitter:hover .tooltip,
+.wrapper .twitter:hover .tooltip::before {
+  background: #1DA1F2;
+  color: #ffffff;
+}
+
+.wrapper .instagram:hover,
+.wrapper .instagram:hover .tooltip,
+.wrapper .instagram:hover .tooltip::before {
+  background: #E4405F;
+  color: #ffffff;
+}
+
+.wrapper .github:hover,
+.wrapper .github:hover .tooltip,
+.wrapper .github:hover .tooltip::before {
+  background: #333333;
+  color: #ffffff;
+}
+
+.wrapper .salvar:hover,
+.wrapper .salvar:hover .tooltip,
+.wrapper .salvar:hover .tooltip::before {
+  background: #1DA1F2;
+  color: #ffffff;
+}
+
+  /* Table Styles */
+
+  .table-wrapper {
+    box-shadow: 0px 35px 50px rgba(0, 0, 0, 0.2);
+  }
+
+  tr {
+    height: 30px;
+  }
+
+  .fl-table {
+    height: 10px;
+    border-radius: 5px;
+    font-size: 15px;
+    font-weight: normal;
+    border: none;
+    border-collapse: collapse;
+    width: 100%;
+    max-width: 100%;
+    white-space: nowrap;
+    background-color: white;
+  }
+
+  .fl-table td,
+  .fl-table th {
+    text-align: center;
+    padding: 8px;
+  }
+
+  .fl-table td {
+    border-right: 1px solid #f8f8f8;
+  }
+
+  .fl-table thead th {
+    color: #ffffff;
+    background: #4FC3A1;
+  }
+
+
+  .fl-table thead th:nth-child(odd) {
+    color: #ffffff;
+    background: #324960;
+  }
+
+  .fl-table tr:nth-child(even) {
+    background: #F8F8F8;
+  }
+
+  /* Responsive */
+
+  @media (max-width: 767px) {
+    .fl-table {
+      display: block;
+      width: 100%;
+    }
+
+    .table-wrapper:before {
+      content: "Scroll horizontally >";
+      display: block;
+      text-align: right;
+      font-size: 11px;
+      color: white;
+      padding: 0 0 10px;
+    }
+
+    .fl-table thead,
+    .fl-table tbody,
+    .fl-table thead th {
+      display: block;
+    }
+
+    .fl-table thead th:last-child {
+      border-bottom: none;
+    }
+
+    .fl-table thead {
+      float: left;
+    }
+
+    .fl-table tbody {
+      width: auto;
+      position: relative;
+      overflow-x: auto;
+    }
+
+    .fl-table td,
+    .fl-table th {
+      padding: 20px .625em .625em .625em;
+      height: 60px;
+      vertical-align: middle;
+      box-sizing: border-box;
+      overflow-x: hidden;
+      overflow-y: auto;
+      width: 230px;
+      font-size: 13px;
+      text-overflow: ellipsis;
+    }
+
+    .fl-table thead th {
+      text-align: left;
+      border-bottom: 1px solid #f7f7f9;
+    }
+
+    .fl-table tbody tr {
+      display: table-cell;
+    }
+
+    .fl-table tbody tr:nth-child(odd) {
+      background: none;
+    }
+
+    .fl-table tr:nth-child(even) {
+      background: transparent;
+    }
+
+    .fl-table tr td:nth-child(odd) {
+      background: #F8F8F8;
+      border-right: 1px solid #E6E4E4;
+    }
+
+    .fl-table tr td:nth-child(even) {
+      border-right: 1px solid #E6E4E4;
+    }
+
+    .fl-table tbody td {
+      display: block;
+      text-align: center;
+    }
+  }
+
+</style>
+
+<div class="row" style="max-width: 100%; margin-left: 1.5%; margin-right: 0; margin-bottom: 2%;">
+  <%  chamado.forEach(function(chamados){ %>
+
+    <%let arr2 = []%>
+    <%for(let i = 0; i < chamados.listaAprovadores.length; i++){%>
+      <%arr2.push(chamados.listaAprovadores[i][1].status)%>
+    <%}%>
+
+    <%if(arr2.includes("Em aprovação")) { %>
+    <%  chamados.listaAprovadores.forEach(function(aprovadores){ %>
+    <%if (logado == aprovadores[0].nome) { %>
+    <div class="col-md-4 mt-3">
+      <div class="card h-100" style="max-width: 25rem;">
+        <div class="card-header">
+          <div class="row">
+            <div class="col-lg-10">
+              <%if (chamados.designado != "") { %>
+                <%if (chamados.urgencia == "Normal") { %>
+                  <button class="button-37 tituloDesignado" role="button" title="Designado" style="padding-top: 4px;padding-bottom: 4px;padding-right: 10px;padding-left: 10px; font-size: 15px;"><%=chamados.designado%></button>
+                <% } %>
+                <%if (chamados.urgencia == "Urgente") { %>
+                  <button class="button-38 tituloDesignado" role="button" title="Designado" style="padding-top: 4px;padding-bottom: 4px;padding-right: 10px;padding-left: 10px; font-size: 15px;"><%=chamados.designado%></button>
+                <% } %>
+                <%if (chamados.urgencia == "Crítico") { %>
+                  <button class="button-39 tituloDesignado" role="button" title="Designado" style="padding-top: 4px;padding-bottom: 4px;padding-right: 10px;padding-left: 10px; font-size: 15px;"><%=chamados.designado%></button>
+                <% } %>
+              <% } %>
+            </div>
+            <div class="col-lg-2">
+              <%if (chamados.urgencia == "Normal") { %>
+              <button class="button-37 tituloIdchamado" role="button" title="ID do chamado" style="padding-top: 4px;padding-bottom: 4px;padding-right: 10px;padding-left: 10px; font-size: 15px;"><%=chamados.idChamado%></button>
+              <% } %>
+              <%if (chamados.urgencia == "Urgente") { %>
+                <button class="button-38 tituloIdchamado" role="button" title="ID do chamado" style="padding-top: 4px;padding-bottom: 4px;padding-right: 10px;padding-left: 10px; font-size: 15px;"><%=chamados.idChamado%></button>
+              <% } %>
+              <%if (chamados.urgencia == "Crítico") { %>
+                <button class="button-39 tituloIdchamado" role="button" title="ID do chamado" style="padding-top: 4px;padding-bottom: 4px;padding-right: 10px;padding-left: 10px; font-size: 15px;"><%=chamados.idChamado%></button>
+              <% } %>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <p class="card-text"><%=chamados.descri%></p>
+          <p class="card-text">- <em><%=chamados.requisitante%></em></p>
+        </div>
+        <ul class="list-group list-group-flush">
+          <div class="row mt-1 mb-1" style="margin-left: 1px;">
+            <div class="col-md-10" style="padding-left: 5px;">
+              <button class="button-8"><%=chamados.area%></button>
+              <button class="button-8"><%=chamados.atividade%></button>
+            </div>
+          </div>
+        </ul>
+        <%if (chamados.aprovador == "") { %>
+        <div class="card-footer bg-light" style="padding: 0;">
+          <ul class="wrapper" style="width: 30%; margin-bottom: 0px; margin-left: 78%;">
+            <li class="icon salvar" data-bs-toggle="modal" data-bs-target="#aprov<%=chamados._id%>">
+              <span class="tooltip">Aprovação</span>
+              <span><i class="fa-solid fa-lock"></i></span>
+            </li>
+          </ul>
+          <div class="modal fade" id="teste<%=chamados._id%>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Dados do chamado <%=chamados.idChamado%></h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                        <div class="col-lg mt-1">
+                            <div class="form-floating">
+                                <select class="form-select" id="empresaSelect" aria-label="Floating label" name="empresa">
+                                    <option class='valor'><%=chamados.empresa%></option>
+                                    <option class='valor'>Matriz</option>
+                                    <option class='valor'>CDD - Linhares</option>
+                                    <option class='valor'>Indústria - Linhares</option>
+                                    <option class='valor'>CD - Pinhais</option>
+                                    <option class='valor'>Injeções</option>
+                                </select>
+                                <label for="empresaSelect">Empresa:</label>
+                            </div>
+                        </div>
+                        <div class="col-lg mt-2">
+                            <div class="form-floating">
+                                <select class="form-select" id="urgenciaSelect" aria-label="Floating label" name="urgencia">
+                                    <option class='valor'><%=chamados.urgencia%></option>
+                                    <option class='valor'>Normal</option>
+                                    <option class='valor'>Urgente</option>
+                                    <option class='valor'>Crítico</option>
+                                </select>
+                                <label for="urgenciaSelect">Urgência:</label>
+                            </div>
+                        </div>
+                        <div class="col-lg mt-2">
+                            <div class="form-floating">
+                              <select class="form-select" id="areaSelect" aria-label="Floating label" name="area">
+                                <option class='valor'><%=chamados.area%></option>
+                                <option class='valor'>Desenhos</option>
+                                <option class='valor'>Artes</option>
+                                <option class='valor'>E-mail</option>
+                              </select>
+                              <label for="areaSelect">Área de atuação:</label>
+                            </div>
+                          </div>
+                          <div class="col-lg mt-2">
+                            <div class="form-floating">
+                              <select class="form-select" id="atividadeSelect" aria-label="Floating label" name="atividade">
+                                <option class='valor'><%=chamados.atividade%></option>
+                                <option class='valor'>Photoshop</option>
+                                <option class='valor'>Adobe</option>
+                                <option class='valor'>After Effects</option>
+                              </select>
+                              <label for="atividadeSelect">Atividade:</label>
+                            </div>
+                          </div>
+                          <div class="col-lg mt-2">
+                            <div class="form-floating">
+                              <select class="form-select" id="designadoSelect" aria-label="Floating label" name="designado">
+                                <option class='valor'><%=chamados.designado%></option>
+                                <option class='valor'></option>
+                                <%  user.forEach(function(users){ %>
+                                <option class='valor'><%=users.realNome%></option>
+                                <% }) %>
+                              </select>
+                              <label for="designadoSelect">Designado:</label>
+                            </div>
+                          </div>
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="button-8" style="margin-right: 1%;" data-bs-dismiss="modal">Fechar</button>
+                <button type="submit" class="button-8" style='text-align: center;' name="idChamadoPost" value="<%=chamados._id%>">Salvar</button>
+                </div>
+              </form>
+              </div>
+            </div>
+          </div>
+          <div class="modal fade" id="aprov<%=chamados._id%>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Aprovadores do chamado <%=chamados.idChamado%></h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                        <div class="col-lg mt-1">
+                          <form action="/respostaAprovChamado" method="post">
+                            <div class="form-floating">
+                                <select class="form-select" id="aprovSelect" aria-label="Floating label" name="respostaAprov">
+                                  <option class='valor'>Aprovado</option>
+                                  <option class='valor'>Reprovado</option>
+                                </select>
+                                <label for="aprovSelect">Aprovar?</label>
+                            </div>
+                        </div>
+                </div>
+                <%if (chamados.listaAprovadores != "") { %>
+                <div class="modal-body">
+                  <div class="table-wrapper table-hover table-responsive" id='tabela'>
+                    <table class="fl-table" id='tabela2'>
+                      <thead>
+                        <tr>
+                          <th>Aprovador</th>
+                          <th>Status</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <select style="visibility: hidden;" class="form-select" id="indiceAprovSelect" aria-label="Floating label" name="indiceAprov">
+                          <option class='valor'><%=aprovadores.length%></option>
+                        </select>
+                        <%  chamados.listaAprovadores.forEach(function(aprovadores){ %>
+                        <tr>
+                          <td><%=aprovadores[0].nome%></td>
+                          <td><%=aprovadores[1].status%></td>
+                        </tr>
+                        <% }) %>
+                      <tbody>
+                    </table>
+                  </div>
+                </div>
+                <% } %>
+                <div class="modal-footer">
+                <button type="button" class="button-8" style="margin-right: 1%;" data-bs-dismiss="modal">Fechar</button>
+                <button type="submit" class="button-8" style='text-align: center;' name="idChamadoPost" value="<%=chamados._id%>">Salvar</button>
+              </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <% } %>
+        </div>
+        </div>
+        <% } %>
+        <% }) %>
+        <%}%>
+        <% }) %>
+      </div>
+
+<%- include('partials/footer') %>

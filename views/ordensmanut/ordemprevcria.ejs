@@ -1,0 +1,251 @@
+<%- include('partials/header') %>
+
+<style>
+  #rowMestra {
+      margin-left: 5px;
+      margin-right: 5px;
+  }
+
+  #titulo {
+    text-align: center;
+  }
+
+  .validadeInput {
+    width: 100%;
+    height: 57px;
+  }
+
+  #validadeDescritivo {
+    font-size: 14px;
+    padding-top: 0;
+    padding-left: 2px;
+  }
+
+  .validadeDiv {
+    border-color: gray;
+    background-clip: padding-box;
+    opacity: .50;
+  }
+</style>
+
+  <div class="row" id='rowMestra'>
+    <div class="row" id='descritivoCadastro'>
+      <div class="col-lg-12 mt-2" id='titulo'>
+        <h3 class='descritivoCadastro'>Criar Ordem de Serviço Preventiva</h3>
+      </div>
+    </div>
+    <form action="/ordemprevcria" method="post" onsubmit="return validate(this);">
+            <div class="row mt-5" id='rowTerceira'>
+                <div class="col-md">
+                    <div class="form-floating">
+                        <input class="form-control" id="previstaInput" name='prevista'>
+                        <label for="previstaInput">Prevista:</label>
+                    </div>
+                </div>
+                <div class="col-md">
+                    <div class="form-floating">
+                        <input class="form-control" id="especialidadeInput" name='especialidade'>
+                        <label for="especialidadeInput">Especialidade:</label>
+                    </div>
+                </div>
+                <div class="col-md">
+                    <div class="form-floating">
+                        <input class="form-control" id="smInput" name='sm'>
+                        <label for="smInput">S.M.:</label>
+                    </div>
+                </div>
+                <div class="col-md">
+                    <div class="form-floating">
+                        <input class="form-control" id="equipamentoInput" name='equipamento'>
+                        <label for="equipamentoInput">Equipamento:</label>
+                    </div>
+                </div>
+                <div class="col-md">
+                    <div class="form-floating">
+                        <input class="form-control" id="estacaoInput" name='estacao'>
+                        <label for="estacaoInput">Estação:</label>
+                    </div>
+                </div>
+                <div class="col-md">
+                    <div class="form-floating">
+                        <input class="form-control" id="localizacaoInput" name='localizacao'>
+                        <label for="localizacaoInput">Localização:</label>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-2">
+              <div class="col-md">
+                <div class="form-floating">
+                    <input class="form-control" id="descricaoInput" name='descricao'>
+                    <label for="descricaoInput">Descrição:</label>
+                </div>
+            </div>
+            </div>
+            <div class="row mt-2">
+                <div class="col-md">
+                  <div class="form-floating">
+                      <input class="form-control" id="duraPrevInput" name='duraPrev'>
+                      <label for="duraPrevInput">Duração Prevista:</label>
+                  </div>
+                </div>
+                <div class="col-md">
+                  <div class="form-floating">
+                      <input class="form-control" id="resPrevInput" name='resPrev'>
+                      <label for="resPrevInput">Resp. de Produção:</label>
+                  </div>
+                </div>
+                <div class="col-md">
+                  <div class="form-floating">
+                      <input class="form-control" id="resPrevInput" name='resPrev'>
+                      <label for="resPrevInput">Resp. de Manutenção:</label>
+                  </div>
+                </div>
+            </div>
+            <div class="row mt-5">
+                <table class="table table-striped" id="myTable">
+                    <thead class="telem">
+                      <tr>
+                        <th scope="col">Nº</th>
+                        <th scope="col">Atividade</th>
+                        <th scope="col">Matrículas</th>
+                        <th scope="col">Data Início</th>
+                        <th scope="col">Data Término</th>
+                        <th scope="col">Total de Horas</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                  </table>
+                  <button type="button" class='btn btn-primary' onclick="myFunction()" style="width: 25%; margin-left: 35%;">Adicionar</button>
+            </div>
+            <div class="row mt-5">
+              <table class="table table-striped" id="myTable2">
+                <thead class="telem2">
+                  <tr>
+                    <td class="align-top">
+                      <div>
+                        <label for="ativNumInput">Atividade Número:</label>
+                        <input class="form-control" id="ativNumInput" name='ativNum'>
+                      </div>
+                    </td>
+                    <td class="align-top">
+                      <div>
+                        <label for="procedPadInput">Procedimento Padrão:</label>
+                        <input class="form-control" id="procedPadInput" name='procedPad'>
+                      </div>
+                    </td>
+                    <td>
+                      <div >
+                        <label for="ativDescriInput">Atividade Título:</label>
+                        <input class="form-control" id="ativDescriInput" name='ativDescri'>
+                      </div>
+                      <table class="table">
+                        <tbody style="border-style: none;">
+                          <div class="mt-2" style="border-style: none;">
+                            <tr style="height: 50px; border-style: none;">
+                              <th class="col-sm-1" style="border-style: none;">1</th>
+                              <td style="border-style: none;">
+                                <input class="form-control" id="equipamentoInput" name='equipamento'>
+                              </td>
+                            </tr>
+                            <tr style="height: 50px; border-style: none;">
+                              <th class="col-sm-1">1</th>
+                              <td>
+                                <input class="form-control" id="equipamentoInput" name='equipamento'>
+                              </td>
+                            </tr>
+                          </div>
+                        </tbody>
+                      </table>
+                      <button type="button" class='btn btn-primary' onclick="criadora()" style="width: 25%; margin-left: 35%;">Adicionar</button>
+                    </td>
+                  </tr>
+                </thead>
+                <tbody>
+                </tbody>
+              </table>
+              <button type="button" class='btn btn-primary' onclick="criadora()" style="width: 25%; margin-left: 35%;">Adicionar</button>
+            </div>
+        <button type="submit" id='botaoSalva' class="btn btn-success mt-5 mb-3" style='margin-left: 45%;'>Salvar</button>
+    </form>
+      
+      <script>
+        function validate(form) {
+          if (document.getElementsByName('descri')[0].value == '') {
+            alert('O campo descrição não pode ser vazio');
+            return false;
+          } else {
+            return confirm('Você realmente quer cadastrar esse produto?');
+          }
+        }
+
+
+        function myFunction(){
+          if(document.getElementsByClassName('telem')[0].childElementCount == 1){
+            var table = document.getElementById("myTable");
+            var row = table.insertRow(-1);
+            var cell1 = row.insertCell(0);
+            var cell2 = row.insertCell(1);
+            var cell3 = row.insertCell(2);
+            var cell4 = row.insertCell(3);
+            var cell5 = row.insertCell(4);
+            var cell6 = row.insertCell(5);
+            cell1.innerHTML = "<td class='innerContador'>" + "<p class='innerCont'>" + "1" + "</p>" + "</td>";
+            cell2.innerHTML = "<td>" + "<input type='checkbox' name='' id=''>Elétrico</input><br>" + 
+            "<input type='checkbox' name='' id=''>Mecânico</input>" + "</td>";
+            cell3.innerHTML = "<td>" + "<p style='width: 200px; display: table; margin-bottom: 0px; margin-top: 50px;'>" + 
+            "<span style='display: table-cell; border-bottom: 1px solid black;'></span>" + 
+            "</p>" + "</td>";
+            cell4.innerHTML = "<td>" + "<input type='date'>" + "</td>"
+            cell5.innerHTML = "<td>" + "<input type='date'>" + "</td>"
+            cell6.innerHTML = "<td>" + "<p style='width: 200px; display: table; margin-bottom: 0px; margin-top: 50px;'>" + 
+            "<span style='display: table-cell; border-bottom: 1px solid black;'></span>" + 
+            "</p>" + "</td>";
+          }else{
+            var table = document.getElementById("myTable");
+            var row = table.insertRow(-1);
+            var cell1 = row.insertCell(0);
+            var cell2 = row.insertCell(1);
+            var cell3 = row.insertCell(2);
+            var cell4 = row.insertCell(3);
+            var cell5 = row.insertCell(4);
+            var cell6 = row.insertCell(5);
+            cell1.innerHTML = "<td class='innerContador'>" + "<p class='innerCont'>" + "teste" + "</p>" + "</td>";
+            cell2.innerHTML = "<td>" + "<input type='checkbox' name='' id=''>Elétrico</input><br>" + 
+            "<input type='checkbox' name='' id=''>Mecânico</input>" + "</td>";
+            cell3.innerHTML = "<td>" + "<p style='width: 200px; display: table; margin-bottom: 0px; margin-top: 50px;'>" + 
+            "<span style='display: table-cell; border-bottom: 1px solid black;'></span>" + 
+            "</p>" + "</td>";
+            cell4.innerHTML = "<td>" + "<input type='date'>" + "</td>"
+            cell5.innerHTML = "<td>" + "<input type='date'>" + "</td>"
+            cell6.innerHTML = "<td>" + "<p style='width: 200px; display: table; margin-bottom: 0px; margin-top: 50px;'>" + 
+            "<span style='display: table-cell; border-bottom: 1px solid black;'></span>" + 
+            "</p>" + "</td>";
+            
+            for(let i = 1; i < document.getElementsByClassName('telem')[0].childElementCount; i++){
+              for(let j = (i - 2); j < i; j++){
+              document.getElementsByClassName('innerCont')[i].innerHTML = (j + 2)
+              }
+            }
+          }
+          }
+
+          function criadora(){
+            var table = document.getElementById("myTable2");
+            var row = table.insertRow(-1);
+            var cell1 = row.insertCell(0);
+            var cell2 = row.insertCell(1);
+            var cell3 = row.insertCell(2);
+            cell1.innerHTML = "<td>" + "<div>" + "<label for='ativNumInput'>Atividade Número:</label>" + 
+            "<input class='form-control' id='ativNumInput' name='ativNum'>" + "</div>" + "</td>";
+            cell2.innerHTML = "<td>" + "<div>" + "<label for='procedPadInput'>Procedimento Padrão:</label>" + 
+            "<input class='form-control' id='procedPadInput' name='procedPad'>" + "</div>" + "</td>";
+            cell3.innerHTML = "<td>" + "<div>" + "<label for='procedPadInput'>Procedimento Padrão:</label>" + 
+            "<input class='form-control' id='procedPadInput' name='procedPad'>" + "</div>" + "</td>";
+          }
+      
+      </script>
+  </div>
+
+
+<%- include('partials/footer') %>

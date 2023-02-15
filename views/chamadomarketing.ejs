@@ -1,0 +1,186 @@
+<%- include('partials/header') %>
+
+<style>
+  #rowMestra {
+    max-width: 99%;
+    margin-left: 1%
+  }
+
+  #titulo {
+    text-align: center;
+  }
+
+  .validadeInput {
+    width: 222px;
+    height: 58px;
+  }
+
+  #validadeDescritivo {
+    font-size: 14px;
+    padding-top: 0;
+    padding-left: 2px;
+  }
+
+  .validadeDiv {
+    border-color: gray;
+    background-clip: padding-box;
+    opacity: .50;
+  }
+
+  .btn-anexo {
+    background-color: indigo;
+    color: white;
+    padding: 0.5rem;
+    font-family: sans-serif;
+    border-radius: 0.3rem;
+    cursor: pointer;
+    margin-top: 1rem;
+}
+
+.file {
+  opacity: 0;
+  width: 0.1px;
+  height: 0.1px;
+  position: absolute;
+}
+
+.file-input label {
+  display: block;
+  position: relative;
+  width: 200px;
+  height: 50px;
+  border-radius: 5px;
+  background: #22577A;
+  box-shadow: 0 4px 7px rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform .2s ease-out;
+}
+
+.file-name {
+  position: absolute;
+  bottom: -35px;
+  left: 10px;
+  font-size: 0.85rem;
+  color: #555;
+}
+
+input:hover + label,
+input:focus + label {
+  transform: scale(1.02);
+}
+</style>
+
+
+<form action="/chamadomarketing" method="post" enctype="multipart/form-data">
+  <div class="row" id='rowMestra'>
+    <div class="row" id='descritivoCadastro'>
+        <div class="col-lg-3 mb-3 mt-3" style="margin-left: 350px; width: 290px;">
+            <h3 class='descritivoCadastro'>Abrir chamado para:</h3>
+        </div>
+        <div class="col-lg-3 mb-3 mt-3" style="padding-left: 0px;">
+            <select class="form-select" id="setorSelect" aria-label="Floating label" name="setor">
+                <option class='valor'>Marketing</option>
+            </select>
+        </div>
+    </div>
+    <div class="row" id='rowTerceira'>
+      <div class="col-lg">
+        <div class="form-floating">
+            <textarea name="descri" cols="174" rows="2" placeholder="Descrição:" style="border: 1px solid #ced4da; border-radius: 0.25rem;"></textarea>
+        </div>
+      </div>
+    </div>
+    <div class="row mt-2">
+      <div class="col-lg">
+        <div class="form-floating">
+          <select class="form-select" id="requisitanteSelect" aria-label="Floating label" name="requisitante">
+            <option class='valor'><%=user%></option>
+          </select>
+          <label for="requisitanteSelect">Requisitante:</label>
+        </div>
+      </div>
+    </div>
+    <div class="row mt-2">
+        <div class="col-lg">
+            <div class="form-floating">
+                <select class="form-select" id="empresaSelect" aria-label="Floating label" name="empresa">
+                    <option class='valor'>Matriz</option>
+                    <option class='valor'>CDD - Linhares</option>
+                    <option class='valor'>Indústria - Linhares</option>
+                    <option class='valor'>CD - Pinhais</option>
+                    <option class='valor'>Injeções</option>
+                </select>
+                <label for="empresaSelect">Empresa:</label>
+            </div>
+        </div>
+        <div class="col-lg">
+            <div class="form-floating">
+                <select class="form-select" id="urgenciaSelect" aria-label="Floating label" name="urgencia">
+                    <option class='valor'>Normal</option>
+                    <option class='valor'>Urgente</option>
+                    <option class='valor'>Crítico</option>
+                </select>
+                <label for="urgenciaSelect">Urgência:</label>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-2">
+        <div class="col-lg">
+            <div class="form-floating">
+              <select class="form-select" id="areaSelect" aria-label="Floating label" name="area">
+                <option class='valor'>Desenhos</option>
+                <option class='valor'>Artes</option>
+                <option class='valor'>E-mail</option>
+              </select>
+              <label for="areaSelect">Área de atuação:</label>
+            </div>
+          </div>
+          <div class="col-lg">
+            <div class="form-floating">
+              <select class="form-select" id="atividadeSelect" aria-label="Floating label" name="atividade">
+                <option class='valor'>Photoshop</option>
+                <option class='valor'>Adobe</option>
+                <option class='valor'>After Effects</option>
+              </select>
+              <label for="atividadeSelect">Atividade:</label>
+            </div>
+          </div>
+    </div>
+  </div>
+  <br>
+
+  <div class="file-input" style="margin-left: 2%;">
+    <input type="file" id="file" class="file" name="postImage">
+    <label for="file">
+      Escolher Anexo
+      <p class="file-name" style="width: 500px;"></p>
+    </label>
+  </div>
+
+  <br>
+  <button type="submit" id='botaoSalva' class="btn btn-success" style="margin-left: 45%;">Abrir chamado</button>
+</form>
+
+<script type="text/javascript">
+  const file = document.querySelector('#file');
+file.addEventListener('change', (e) => {
+  // Get the selected file
+  const [file] = e.target.files;
+  // Get the file name and size
+  const { name: fileName, size } = file;
+  // Convert size in bytes to kilo bytes
+  const fileSize = (size / 1000).toFixed(2);
+  // Set the text content
+  const fileNameAndSize = `${fileName} - ${fileSize}KB`;
+  document.querySelector('.file-name').textContent = fileNameAndSize;
+});
+
+</script>
+
+
+<%- include('partials/footer') %>

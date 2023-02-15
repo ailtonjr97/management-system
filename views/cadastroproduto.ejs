@@ -1,0 +1,121 @@
+<%- include('partials/header') %>
+
+<style>
+  #rowMestra {
+    max-width: 99%;
+    margin-left: 1%
+  }
+
+  #titulo {
+    text-align: center;
+  }
+
+  .validadeInput {
+    width: 222px;
+    height: 58px;
+  }
+
+  #validadeDescritivo {
+    font-size: 14px;
+    padding-top: 0;
+    padding-left: 2px;
+  }
+
+  .validadeDiv {
+    border-color: gray;
+    background-clip: padding-box;
+    opacity: .50;
+  }
+</style>
+
+<form action="/cadastroproduto" method="post" onsubmit="return validate(this);">
+  <div class="row" id='rowMestra'>
+    <div class="row" id='descritivoCadastro'>
+      <div class="col-lg-12 mt-2" id='titulo'>
+        <h3 class='descritivoCadastro'>Cadastro de Produto</h3>
+      </div>
+    </div>
+    <div class="row" id='rowTerceira'>
+      <div class="col-lg">
+        <div class="form-floating">
+          <input class="form-control" id="descricaoInput" name='descri'>
+          <label for="descricaoInput">Descrição:</label>
+        </div>
+      </div>
+    </div>
+    <div class="row mt-2">
+      <div class="col-lg">
+        <div class="form-floating">
+          <input class="form-control" id="codigoInput" name='codigo'>
+          <label for="codigoInput">Código:</label>
+        </div>
+      </div>
+      <div class="col-lg">
+        <div class="form-floating">
+          <input class="form-control" id="ncmInput" type="number" name='ncm'>
+          <label for="ncmInput">NCM:</label>
+        </div>
+      </div>
+      <div class="col-lg">
+        <div class="form-floating">
+          <input class="form-control" id="gtinInput" type="number" name='gtin'>
+          <label for="ncmInput">GTIN:</label>
+        </div>
+      </div>
+      <div class="col-lg">
+        <div class="form-floating">
+          <select class="form-select" id="classificacaoSelect" aria-label="Floating label" name="categoria">
+            <option class='valor'></option>
+            <option class='valor'>Categoria 1</option>
+            <option class='valor'>Categoria 2</option>
+          </select>
+          <label for="classificacaoSelect">Categoria:</label>
+        </div>
+      </div>
+    </div>
+    <div class="row mt-2">
+      <div class="col-lg">
+        <div class="form-floating">
+          <input class="form-control" id="unInput" type="text" name='un' required>
+          <label for="ncmInput">UN:</label>
+        </div>
+      </div>
+      <div class="col-lg">
+        <div class="form-floating">
+          <input class="form-control" id="utilizacaoInput" type="text" name='utilizacao' required>
+          <label for="ncmInput">Utilização:</label>
+        </div>
+      </div>
+      <div class="col-lg">
+        <div class="form-floating">
+          <input class="form-control" id="familiaInput" type="text" name='familia' required>
+          <label for="ncmInput">Família:</label>
+        </div>
+      </div>
+      <div class="col-lg">
+        <div class="form-floating">
+          <input class="form-control" id="origemInput" type="text" name='origem' required>
+          <label for="ncmInput">Origem:</label>
+        </div>
+      </div>
+    </div>
+  </div>
+  <button type="submit" id='botaoSalva' class="btn btn-success mt-3" style='margin-left: 47%;'>Salvar</button>
+</form>
+
+<script>
+  function validate(form) {
+
+
+    if (document.getElementsByName('descri')[0].value == '') {
+      alert('O campo descrição não pode ser vazio');
+      return false;
+    } else {
+      return confirm('Você realmente quer cadastrar esse produto?');
+    }
+  }
+
+</script>
+
+
+<%- include('partials/footer') %>

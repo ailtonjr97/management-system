@@ -1,0 +1,82 @@
+<%- include('partials/header') %>
+
+<style>
+  #rowMestra {
+    max-width: 99%;
+    margin-left: 1%
+  }
+
+  #titulo {
+    text-align: center;
+  }
+
+  .validadeInput {
+    width: 100%;
+    height: 57px;
+  }
+
+  #validadeDescritivo {
+    font-size: 14px;
+    padding-top: 0;
+    padding-left: 2px;
+  }
+
+  .validadeDiv {
+    border-color: gray;
+    background-clip: padding-box;
+    opacity: .50;
+  }
+</style>
+
+<form action="/saidaproduto" method="post" class='mb-3'>
+  <div class="row" id='rowMestra'>
+    <div class="row" id='descritivoCadastro'>
+      <div class="col-lg-12 mt-2" id='titulo'>
+        <h3 class='descritivoCadastro'>Saída de Produto</h3>
+      </div>
+    </div>
+    <div class="row" id='rowTerceira'>
+      <div class="col-lg-6">
+        <%  produto.forEach(function(produtos){ %>
+        <h3>Produto: <%=produtos.nome%></h3>
+        <% }) %>
+      </div>
+      <div class="col-lg-6">
+        <%  produto.forEach(function(produtos){ %>
+        <input type="text" name="nome" value="<%=produtos.nome%>">
+        <% }) %>
+      </div>
+    </div>
+    <div class="row mt-2">
+      <div class="row mt-2" id='segundaRow'>
+        <div class="col-lg">
+          <div class="form-floating">
+            <select class="form-select" id="classificacaoSelect" aria-label="Floating label" name="lote">
+              <%  produto.forEach(function(produtos){ %>
+                <% for(let i = 0; i < (produtos.lote.length); i++) { %>
+                  <option class='valor'><%=produtos.lote[i][0].numLote%></option>
+                <% } %>
+              <% }) %>
+            </select>
+            <label for="classificacaoSelect">Lote:</label>
+          </div>
+        </div>
+        <div class="col-lg">
+          <div class="form-floating">
+            <input class="form-control" id="icmsInput" type='number' name='quantidade'>
+            <label for="icmsInput">Quantidade:</label>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row mt-4">
+      <div class="col-lg" style='text-align: center'>
+        <a href="/procurasaidaproduto" class="btn btn-warning" role="button">Escolher outro produto</a>
+        <button type="submit" id='botaoSalva' class="btn btn-success">Salvar</button>
+      </div>
+    </div>
+  </div>
+</form>
+
+
+<%- include('partials/footer') %>

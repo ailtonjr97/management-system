@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+
+
+
+<head>
+  <!-- CSS only -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+<link rel="stylesheet" href="/css/styles.css">
+<script src="https://kit.fontawesome.com/04298be0bb.js" crossorigin="anonymous"></script>
+<script src="https://kit.fontawesome.com/9ba3f6cb6e.js" crossorigin="anonymous"></script>
+<script src="https://cdn.lordicon.com/lusqsztk.js"></script>
+</head>
+
+<body>
+  <div class="modal" id="loader" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+
+    <center>
+      <div class="loader"></div>
+    </center>
+
+  </div>
+  <nav class="navbar navbar-icon-top navbar-expand-lg navbar-dark" id='nav-page'>
+    <div class="container-fluid" id='container-da-navbar'>
+      <a class="navbar-brand" href="/inicio">
+        <img id='logo-fibracem' src="/images/fibracem.png">
+      </a>
+      <button class="navbar-toggler" id='botao-fechador2' type="button">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="myNav">
+        <ul class="navbar-nav">
+          <li class="nav-item dropdown">
+            <a class="nav-link active " href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="fa-solid fa-bullhorn"></i><br>
+              <span class='descricao-menu'>Marketing</span>
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="/chamadomarketing">Abrir Chamado</a></li>
+              <li><a class="dropdown-item" href="/verchamadomkt">Chamados</a></li>
+              <li><a class="dropdown-item" href="/meuschamadosmkt">Meus Chamados</a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link active " href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="fa-solid fa-paste"></i><br>
+              <span class='descricao-menu'>Cadastro</span>
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="#">Produto</a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link active " href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="fa-solid fa-dolly"></i><br>
+              <span class='descricao-menu'>Logística</span>
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="#">Produtos</a></li>
+              <li><a class="dropdown-item" href="#">Entrada de Produtos</a></li>
+              <li><a class="dropdown-item" href="#">Saída de Produtos</a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown float-end" id='usuarios'>
+            <a class="nav-link active " href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <%  chamado.forEach(function(chamados){ %>
+                <%for(let i = 0; i < chamados.listaAprovadores.length; i++){%>
+                  <%if (logado == chamados.listaAprovadores[i][0].nome && chamados.listaAprovadores[i][1].status == "Em aprovação") { %>
+                    <%console.log(i)%>
+                    <span class="notificSpan" style="position: absolute; left: 50%; bottom: 45px; z-index: 999;"><button class="button-8" style="padding: 1px 5px; color: white; background-color: red; border-color: red; box-shadow: none; font-size: 11px;">1</button></span>
+                  <%}%>
+                <%}%>
+              <%})%>
+              <i class="fa-solid fa-user"></i>
+              <br>
+              <span class='descricao-menu' id='arruma-titulo'>Usuário</span>
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <%  chamado.forEach(function(chamados){ %>
+                    <%for(let i = 0; i < chamados.listaAprovadores.length; i++){%>
+                      <%if (logado == chamados.listaAprovadores[i][0].nome && chamados.listaAprovadores[i][1].status == "Em aprovação") { %>
+                        <li><a class="dropdown-item" href="/aprovChamados">Aguardando aprovação dos seguintes chamados: <span><button class="button-8" style="padding: 2px 10px;"><%=chamados.idChamado%></button></span>
+                      <%}%>
+                    <%}%>
+                  <%})%>
+                </a>
+              </li>
+              <li><a class="dropdown-item" href="/register">Novo Usuário</a></li>
+              <li><a class="dropdown-item" href="/ativos">Usuários Ativos</a></li>
+              <li><a class="dropdown-item" href="/logout">Sair</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <script type="text/javascript">
+    for(let i = 1; i < document.getElementsByClassName('notificSpan').length; i++){
+      document.getElementsByClassName('notificSpan')[i].style.display = 'none'
+    }
+  </script>
+</body>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.min.js" integrity="sha384-j0CNLUeiqtyaRmlzUHCPZ+Gy5fQu0dQ6eZ/xAww941Ai1SxSY+0EQqNXNE6DZiVc" crossorigin="anonymous"></script>

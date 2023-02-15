@@ -1,0 +1,190 @@
+<%- include('partials/header') %>
+<div class="container mt-2">
+  <h1>Dados</h1>
+
+  <div class="row" style='margin-bottom: 80px;'>
+    <div class="col-sm-8">
+      <div class="card">
+        <div class="card-body">
+
+          <!-- Makes POST request to /register route -->
+          <form action="/dados" method="POST" autocomplete="off" id='formCad'>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" class="form-control" name="username" autocomplete="off" readonly value="<%=username%>" readonly>
+            </div>
+            <div class="form-group mt-2">
+              <label for="password">Senha</label>
+              <input type="password" class="form-control" name="password" readonly value="<%=username%>">
+            </div>
+            <div class="form-group mt-2">
+              <label for="nome">Nome</label>
+              <input type="text" class="form-control" name="nome" value='<%=nome%>'>
+            </div>
+            <div class="form-group mt-2">
+              <label for="data">Data de Nascimento</label>
+              <input type="date" class="form-control" name="data" value="<%=data%>">
+            </div>
+            <div class="form-group mt-2">
+              <label for="cpf">CPF</label>
+              <input type="number" class="form-control" name="cpf" value="<%=cpf%>">
+            </div>
+            <div class="form-group mt-2">
+              <label for="rg">RG</label>
+              <input type="number" class="form-control" name="rg" value="<%=rg%>">
+            </div>
+            <div class="form-group mt-2">
+              <label for="setores">Setor</label>
+              <select id="setores" name="setores" class='form-control'>
+                <option value="0" class='zerado'><%=setor%></option>
+                <option value="1">Tecnologia da Informação</option>
+                <option value="2">Recursos Humanos</option>
+                <option value="3">Financeiro</option>
+                <option value="4">Engenharia</option>
+              </select>
+              <input type="hidden" name="setorDescri" value="<%=setor%>">
+            </div>
+            <div class="form-group mt-2">
+              <label for="setores">Setor</label>
+              <select id="setores2" name="setores" class='form-control'>
+                <option value="0" class='zerado'><%=setor%></option>
+                <option value="1">Tecnologia da Informação</option>
+                <option value="2">Recursos Humanos</option>
+                <option value="3">Financeiro</option>
+                <option value="4">Engenharia</option>
+              </select>
+            </div>
+            <div class="form-group mt-2">
+              <label for="cargos">Cargo</label>
+              <select id="cargos" name="cargos" class='form-control'>
+                <option value="0" class='zerado'><%=cargo%></option>
+                <option value="1">Estagiário</option>
+                <option value="2">Assistente</option>
+                <option value="3">Analista</option>
+                <option value="4">Coordenador</option>
+              </select>
+              <input type="hidden" name="cargoDescri" value="<%=cargo%>">
+            </div>
+            <div class="form-group mt-2">
+              <label for="cargos">Cargo</label>
+              <select id="cargos2" name="cargos" class='form-control'>
+                <option value="0" class='zerado'><%=cargo%></option>
+                <option value="1">Estagiário</option>
+                <option value="2">Assistente</option>
+                <option value="3">Analista</option>
+                <option value="4">Coordenador</option>
+              </select>
+            </div>
+            <div class="form-group mt-2">
+              <label for="unidade">Unidade</label>
+              <select id="unidade" name="unidade" class='form-control'>
+                <option value="0" class='zerado'><%=unidade%></option>
+                <option value="1">Fibracem Matriz</option>
+                <option value="2">Fibracem ES</option>
+                <option value="3">Fibracem CD Pinhais</option>
+                <option value="4">Fibracem SP</option>
+              </select>
+              <input type="hidden" name="unidadeDescri" value="<%=unidade%>">
+            </div>
+            <div class="form-group mt-2">
+              <label for="unidade">Unidade</label>
+              <select id="unidade2" name="unidade" class='form-control'>
+                <option value="0" class='zerado'><%=unidade%></option>
+                <option value="1">Fibracem Matriz</option>
+                <option value="2">Fibracem ES</option>
+                <option value="3">Fibracem CD Pinhais</option>
+                <option value="4">Fibracem SP</option>
+              </select>
+            </div>
+            <button type="button" id='botaoVerifica' class="btn btn-warning mt-2">Verificar</button>
+            <button type="submit" id='botaoSalva' class="btn btn-success mt-2" disabled>Salvar</button>
+            <button type="submit" id='botaoExclui' class="btn btn-danger mt-4" form='formExclui' style='margin-right: 100%;' onclick="alertaExcluir()">Excluir</button>
+            </form>
+            <form class="" action="/deleteUser" method="post" id='formExclui'>
+              <div class="form-group">
+                <input type="hidden" class="form-control" name="username" autocomplete="off" value="<%=username%>" readonly>
+              </div>
+            </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  let alertaExcluir = function(){
+    let alerta = alert('Usuário excluído com sucesso')
+    return alerta
+  }
+
+  document.getElementById('botaoVerifica').addEventListener('click', function(){
+    if(document.getElementsByName('username')[0].value == '' || document.getElementsByName('password')[0].value == ''||
+        document.getElementsByName('nome')[0].value == '' || document.getElementsByName('data')[0].value == '' || document.getElementsByName('cpf')[0].value == '' ||
+        document.getElementsByName('rg')[0].value == '' || document.getElementsByName('setores')[0].value == '' ||
+        document.getElementsByName('cargos')[0].value == '' || document.getElementsByName('unidade')[0].value == ''){
+          alert('Preencha todos os campos')
+    } else {
+      document.getElementById('botaoSalva').disabled = ''
+      document.getElementsByName('username')[0].readOnly = 'true'
+      document.getElementsByName('password')[0].readOnly = 'true'
+      document.getElementsByName('nome')[0].readOnly = 'true'
+      document.getElementsByName('data')[0].readOnly = 'true'
+      document.getElementsByName('cpf')[0].readOnly = 'true'
+      document.getElementsByName('rg')[0].readOnly = 'true'
+      document.getElementsByName('setores')[0].readOnly = 'true'
+      document.getElementsByName('cargos')[0].readOnly = 'true'
+      document.getElementsByName('unidade')[0].readOnly = 'true'
+      document.getElementById('setores2').value = document.getElementById('setores').value
+      document.getElementById('cargos2').value = document.getElementById('cargos').value
+      document.getElementById('unidade2').value = document.getElementById('unidade').value
+      document.getElementById('setores').disabled = 'disabled'
+      document.getElementById('cargos').disabled = 'disabled'
+      document.getElementById('unidade').disabled = 'disabled'
+    }
+  })
+
+  document.getElementsByName('setores')[0].addEventListener("click", function(){
+    //Preenche o campo não visível para dar o POST descrição do setor
+    if (document.getElementsByName('setores')[0].value == 1){
+      document.getElementsByName('setorDescri')[0].value = 'Tecnologia da Informação';
+  } else if (document.getElementsByName('setores')[0].value == 2){
+      document.getElementsByName('setorDescri')[0].value = 'Recursos Humanos';
+  } else if (document.getElementsByName('setores')[0].value == 3){
+      document.getElementsByName('setorDescri')[0].value = 'Financeiro';
+  } else if (document.getElementsByName('setores')[0].value == 4){
+      document.getElementsByName('setorDescri')[0].value = 'Engenharia';
+  }
+  });
+
+  document.getElementsByName('cargos')[0].addEventListener("click", function(){
+    //Preenche o campo não visível para dar o POST descrição do cargo
+    if (document.getElementsByName('cargos')[0].value == 1){
+      document.getElementsByName('cargoDescri')[0].value = 'Estagiário';
+  } else if (document.getElementsByName('cargos')[0].value == 2){
+      document.getElementsByName('cargoDescri')[0].value = 'Assistente';
+  } else if (document.getElementsByName('cargos')[0].value == 3){
+      document.getElementsByName('cargoDescri')[0].value = 'Analista';
+  } else if (document.getElementsByName('cargos')[0].value == 4){
+      document.getElementsByName('cargoDescri')[0].value = 'Coordenador';
+  }
+  });
+
+
+document.getElementsByName('unidade')[0].addEventListener("click", function(){
+  //Preenche o campo não visível para dar o POST descrição da unidade
+  if (document.getElementsByName('unidade')[0].value == 1){
+    document.getElementsByName('unidadeDescri')[0].value = 'Fibracem Matriz';
+} else if (document.getElementsByName('unidade')[0].value == 2){
+    document.getElementsByName('unidadeDescri')[0].value = 'Fibracem ES';
+} else if (document.getElementsByName('unidade')[0].value == 3){
+    document.getElementsByName('unidadeDescri')[0].value = 'Fibracem CD Pinhais';
+} else if (document.getElementsByName('unidade')[0].value == 4){
+    document.getElementsByName('unidadeDescri')[0].value = 'Fibracem SP';
+}
+});
+
+document.getElementsByClassName('form-group')[7].style.display = 'none'
+document.getElementsByClassName('form-group')[9].style.display = 'none'
+document.getElementsByClassName('form-group')[11].style.display = 'none'
+
+</script>

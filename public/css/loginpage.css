@@ -1,0 +1,84 @@
+body{
+  background-image: url("../images/backgroundlogin.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+p{
+  font-size: 1.5rem;
+  text-align: left;
+}
+
+.coluna-central{
+  text-align: center;
+  border-radius: 50px;
+}
+
+.container-fluid{
+  background:rgba(56,255,255,0);
+  margin-top: 5%;
+}
+
+.form-control{
+  background: url("../images/user.png") no-repeat scroll 1.5% 50%;
+  padding-left:30px;
+  border-radius: 10px;
+  min-width: 100%;
+  max-width: 100%;
+  display: block;
+}
+
+#titulo{
+  text-align: center;
+}
+
+#senha{
+  background: url('../images/padlock.png') no-repeat scroll 1% 50%;
+  padding-left:30px;
+  border-radius: 10px;
+  min-width: 100%;
+  max-width: 100%;
+  display: block;
+}
+
+.card-body{
+  text-align: center;
+}
+
+.card{
+  border: none;
+}
+
+.arredonda{
+  border-radius: 21px;
+}
+
+.btn{
+  border: none;
+  border-radius: 21px;
+  background-color: green;
+}
+
+@media (min-width: 1100px){
+  .form-control{
+    background: url('../images/user.png') no-repeat scroll 1.5% 50%;
+    padding-left:30px;
+    border-radius: 10px;
+    min-width: 120%;
+    max-width: 120%;
+  }
+
+  #senha{
+    background: url('../images/padlock.png') no-repeat scroll 1% 50%;
+    padding-left:30px;
+    border-radius: 10px;
+    min-width: 120%;
+    max-width: 120%;
+  }
+}
+
+.form-group{
+  margin-right: 5%;
+}

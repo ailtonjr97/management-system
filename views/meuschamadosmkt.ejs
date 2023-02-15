@@ -1,0 +1,156 @@
+<%- include('partials/header') %>
+
+<style>
+.button-8 {
+  background-color: #e1ecf4;
+  border-radius: 3px;
+  border: 1px solid #7aa7c7;
+  box-shadow: rgba(255, 255, 255, .7) 0 1px 0 0 inset;
+  box-sizing: border-box;
+  color: #39739d;
+  cursor: pointer;
+  display: inline-block;
+  font-family: -apple-system,system-ui,"Segoe UI","Liberation Sans",sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.15385;
+  margin: 0;
+  outline: none;
+  padding: 8px .8em;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: baseline;
+  white-space: nowrap;
+}
+
+.button-8:hover,
+.button-8:focus {
+  background-color: #b3d3ea;
+  color: #2c5777;
+}
+
+.button-8:focus {
+  box-shadow: 0 0 0 4px rgba(0, 149, 255, .15);
+}
+
+.button-8:active {
+  background-color: #a0c7e4;
+  box-shadow: none;
+  color: #2c5777;
+}
+
+.button-37 {
+  background-color: #17a2b8;
+  border: 1px solid #17a2b8;
+  border-radius: 4px;
+  box-shadow: rgba(0, 0, 0, .1) 0 2px 4px 0;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  font-family: "Akzidenz Grotesk BQ Medium", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  outline: none;
+  outline: 0;
+  padding: 10px 25px;
+  text-align: center;
+  transform: translateY(0);
+  transition: transform 150ms, box-shadow 150ms;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.button-37:hover {
+  box-shadow: rgba(0, 0, 0, .15) 0 3px 9px 0;
+  transform: translateY(-2px);
+}
+
+@media (min-width: 768px) {
+  .button-37 {
+    padding: 10px 30px;
+  }
+}
+
+.button-39 {
+  background-color: #dc3545;
+  border: 1px solid #dc3545;
+  border-radius: 4px;
+  box-shadow: rgba(0, 0, 0, .1) 0 2px 4px 0;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  font-family: "Akzidenz Grotesk BQ Medium", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  outline: none;
+  outline: 0;
+  padding: 10px 25px;
+  text-align: center;
+  transform: translateY(0);
+  transition: transform 150ms, box-shadow 150ms;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.button-39:hover {
+  box-shadow: rgba(0, 0, 0, .15) 0 3px 9px 0;
+  transform: translateY(-2px);
+}
+
+@media (min-width: 768px) {
+  .button-39 {
+    padding: 10px 30px;
+  }
+}
+</style>
+
+
+<div class="row" style="max-width: 100%; margin-left: 1.5%; margin-right: 0; margin-bottom: 2%;">
+  <%  chamado.forEach(function(chamados){ %>
+    <%if (logado == chamados.requisitante) { %>
+    <div class="col-md-4 mt-3">
+      <div class="card h-100" style="max-width: 25rem;">
+        <div class="card-header">
+          <div class="row">
+            <%if (chamados.designado != '') {%>
+            <div class="col-lg-10"><button class="button-37 tituloDesignado" role="button" title="Designado" style="padding-top: 4px;padding-bottom: 4px;padding-right: 10px;padding-left: 10px; font-size: 15px;"><%=chamados.designado%></button></div>
+            <%}%>
+            <%if (chamados.designado == '') {%>
+              <div class="col-lg-10"></div>
+            <%}%>
+            <div class="col-lg-2"><button class="button-37 tituloIdchamado" role="button" title="ID do chamado" style="padding-top: 4px;padding-bottom: 4px;padding-right: 10px;padding-left: 10px; font-size: 15px;"><%=chamados.idChamado%></button></div>
+          </div>
+        </div>
+        <div class="card-body">
+          <p class="card-text"><%=chamados.descri%></p>
+          <p class="card-text">- <em><%=chamados.requisitante%></em></p>
+        </div>
+        <ul class="list-group list-group-flush">
+          <div class="row mt-1 mb-1" style="margin-left: 1px;">
+            <div class="col-md-6" style="padding-left: 5px;">
+              <button class="button-8"><%=chamados.area%></button>
+              <button class="button-8"><%=chamados.atividade%></button>
+            </div>
+          </div>
+        </ul>
+        <div class="card-footer bg-transparent" style="padding-left: 5px;">
+          <%if (chamados.resposta != ''){%>
+            <button class="button-37 respostaChamado" role="button" title="Designado" style="padding-top: 4px;padding-bottom: 4px;padding-right: 10px;padding-left: 10px; font-size: 15px;"><%=chamados.resposta%></button>
+          <%}%>
+          <%if (chamados.resposta == ''){%>
+            <button class="button-39 respostaChamado" role="button" title="Designado" style="padding-top: 4px;padding-bottom: 4px;padding-right: 10px;padding-left: 10px; font-size: 15px;">Não há resposta para este chamado</button>
+          <%}%>
+        </div>
+        </div>
+        </div>
+        <% } %>
+        <% }) %>
+      </div>
+
+
