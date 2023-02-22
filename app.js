@@ -62,12 +62,13 @@ const userSchema = new mongoose.Schema({
 
 const produtoSchema = new mongoose.Schema({
   nome: String,
+  descri: String,
   codigo: String,
   ncm: Number,
   quantidade: Number,
   lote: Array,
   gtin: Number,
-  un: String,
+  un: String, 
   categoria: String,
   utilizacao: String,
   familia: String,
@@ -595,6 +596,64 @@ app.get("/testaEmail", (req, res) => {
   }
   
   main().catch(console.error);
+});
+
+//////////////////////////////////////////////////////////////////////////////////////
+app.get("/cadastroproduto", (req, res) => {
+  if(req.isAuthenticated()){
+    Chamado.find(function(err, chamado) {
+      User.find(function (error, user) {
+        res.render("cadastroproduto", {
+          chamado: chamado,
+          user: user,
+          logado: req.user.realNome
+        });
+    });
+  });
+  }else{
+    res.redirect('/login')
+  }
+});
+
+app.post("/cadastroproduto", function(req, res){
+const produto = new Produto({
+  nome: req.body.nome,
+  descri: req.body.descri,
+  codigo: req.body.codigo,
+  ncm: req.body.ncm,
+  gtin: req.body.gtin,
+  categoria: req.body.categoria,
+  un: req.body.un,
+  utilizacao: req.body.utilizacao,
+  familia: req.body.familia,
+  origem: req.body.origem,
+})
+produto.save(function(err){
+  if(err){
+  } else {
+    res.redirect('/produtos');
+  };
+});
+});
+
+//////////////////////////////////////////////////////////////////////////////////////
+app.get("/produtos", (req, res) => {
+  if(req.isAuthenticated()){
+    Chamado.find(function(err, chamado) {
+      User.find(function (error, user) {
+        Produto.find(function (error, produto) {
+          res.render("produtos", {
+            chamado: chamado,
+            user: user,
+            logado: req.user.realNome,
+            produto: produto
+          });
+        });
+    });
+  });
+  }else{
+    res.redirect('/login')
+  }
 });
 //////////////////////////////////////////////////////////////////////////////////////
 app.listen(5000, function() {

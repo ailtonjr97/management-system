@@ -438,6 +438,12 @@ th:hover #botaoAcoes{
   font-size: 18px;
 }
 
+.navbar-icon-top .navbar-collapse .navbar-nav .nav-item .nav-link > .fa-chart-simple{
+  position: relative;
+  padding-left: 35%;
+  font-size: 19px;
+}
+
 #alinhaTI{
   margin-left: 10px;
 }
