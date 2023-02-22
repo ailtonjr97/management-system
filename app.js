@@ -628,10 +628,10 @@ app.post("/cadastroproduto", function(req, res){
               if (err){
                 res.send("Erro ao subir arquivo. Favor abrir chamado.")
               }else{
-                const chamado = new Chamado({
-                  idChamado: count2,
-                  setor: req.body.setor,
+                const produto = new Produto({
+                  nome: req.body.nome,
                   descri: req.body.descri,
+                  codigo: req.body.codigo,
                   empresa: req.body.empresa,
                   urgencia: req.body.urgencia,
                   area: req.body.area,
@@ -642,22 +642,22 @@ app.post("/cadastroproduto", function(req, res){
                   resposta: '',
                   arquivado: '',
                 })
-                chamado.save(function(err){
+                produto.save(function(err){
                   if(err){
                   } else {
-                    res.redirect('/verchamadomkt');
+                    res.redirect('/produtos');
                   };
                 });
               }})
           }
       });
   } else{
-    Chamado.countDocuments({}, function (err, count) {
+    Produto.countDocuments({}, function (err, count) {
       if (err){
           console.log(err)
       }else{
         let count2 = count + 1
-        const chamado = new Chamado({
+        const produto = new Produto({
           idChamado: count2,
           setor: req.body.setor,
           descri: req.body.descri,
@@ -671,10 +671,10 @@ app.post("/cadastroproduto", function(req, res){
           resposta: '',
           arquivado: '',
         })
-        chamado.save(function(err){
+        produto.save(function(err){
           if(err){
           } else {
-            res.redirect('/verchamadomkt');
+            res.redirect('/produtos');
           };
         });
       }
