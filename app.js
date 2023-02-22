@@ -616,24 +616,70 @@ app.get("/cadastroproduto", (req, res) => {
 });
 
 app.post("/cadastroproduto", function(req, res){
-const produto = new Produto({
-  nome: req.body.nome,
-  descri: req.body.descri,
-  codigo: req.body.codigo,
-  ncm: req.body.ncm,
-  gtin: req.body.gtin,
-  categoria: req.body.categoria,
-  un: req.body.un,
-  utilizacao: req.body.utilizacao,
-  familia: req.body.familia,
-  origem: req.body.origem,
-})
-produto.save(function(err){
-  if(err){
-  } else {
-    res.redirect('/produtos');
-  };
-});
+  if(req.files){
+    let file = req.files.postImage
+    let filename = file.name
+        Produto.countDocuments({}, function (err, count) {
+          if (err){
+              console.log(err)
+          }else{
+            let count2 = count + 1
+            file.mv('./public/anexos/' + count2 + "-" + filename, function(err){
+              if (err){
+                res.send("Erro ao subir arquivo. Favor abrir chamado.")
+              }else{
+                const chamado = new Chamado({
+                  idChamado: count2,
+                  setor: req.body.setor,
+                  descri: req.body.descri,
+                  empresa: req.body.empresa,
+                  urgencia: req.body.urgencia,
+                  area: req.body.area,
+                  atividade: req.body.atividade,
+                  requisitante: req.body.requisitante,
+                  designado: '',
+                  anexoNome: count2 + "-" + filename,
+                  resposta: '',
+                  arquivado: '',
+                })
+                chamado.save(function(err){
+                  if(err){
+                  } else {
+                    res.redirect('/verchamadomkt');
+                  };
+                });
+              }})
+          }
+      });
+  } else{
+    Chamado.countDocuments({}, function (err, count) {
+      if (err){
+          console.log(err)
+      }else{
+        let count2 = count + 1
+        const chamado = new Chamado({
+          idChamado: count2,
+          setor: req.body.setor,
+          descri: req.body.descri,
+          empresa: req.body.empresa,
+          urgencia: req.body.urgencia,
+          area: req.body.area,
+          atividade: req.body.atividade,
+          requisitante: req.body.requisitante,
+          designado: '',
+          anexoNome: '',
+          resposta: '',
+          arquivado: '',
+        })
+        chamado.save(function(err){
+          if(err){
+          } else {
+            res.redirect('/verchamadomkt');
+          };
+        });
+      }
+  });
+  }
 });
 
 //////////////////////////////////////////////////////////////////////////////////////
