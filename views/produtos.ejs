@@ -3,26 +3,18 @@
 <style>
 </style>
 
+<h1 class="mt-3" style="text-align: center;">Produtos cadastrados</h1>
 <div class="row" style="max-width: 100%; margin-left: 1.5%; margin-right: 0; margin-bottom: 2%;">
   <%  produto.forEach(function(produtos){ %>
-  <div class="col-md-4 mt-3">
-    <div class="card h-100" style="width: 26rem;">
-      <img class="card-img-top" style="display: block; margin-left: auto; margin-right: auto; width: 50%;" src="https://static3.tcdn.com.br/img/img_prod/684622/caixa_de_emenda_fibracem_24f_dual_svm_7_12_991_1_20200228164721.jpg" alt="Card image cap">
+  <div class="col-sm-3 mt-3">
+    <div class="card h-100">
+      <img class="card-img-top" style="display: block; margin-left: auto; margin-right: auto;" src="/public/anexos/produtos/<%=produtos.anexoNome%>" alt="Imagem do produto">
       <div class="card-body h-100">
         <h5 class="card-title"><%=produtos.nome%></h5>
         <p class="card-text"><%=produtos.descri%></p>
       </div>
       <ul class="list-group list-group-flush">
-        <li class="list-group-item">
-          <div class="form-floating">
-            <select class="form-select" id="classificacaoSelect" aria-label="Floating label" name="categoria">
-              <option class='valor'></option>
-              <option class='valor'>36 Fibras</option>
-              <option class='valor'>72 Fibras</option>
-            </select>
-            <label for="classificacaoSelect">Fibras:</label>
-          </div>
-        </li>
+        <li class="list-group-item" style="text-align: center;"><%=produtos.codigo%></li>
         <li class="list-group-item">
           <div class="form-floating">
             <select class="form-select" id="classificacaoSelect" aria-label="Floating label" name="categoria">

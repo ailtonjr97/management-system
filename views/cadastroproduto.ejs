@@ -60,7 +60,7 @@
 }
 </style>
 
-<form action="/cadastroproduto" method="post" onsubmit="return validate(this);">
+<form action="/cadastroproduto" method="post" enctype="multipart/form-data" onsubmit="return validate(this);">
   <div class="row" id='rowMestra'>
     <div class="row" id='descritivoCadastro'>
       <div class="col-lg-12 mt-2" id='titulo'>
@@ -151,6 +151,19 @@
 </form>
 
 <script>
+  const file = document.querySelector('#file');
+  file.addEventListener('change', (e) => {
+    // Get the selected file
+    const [file] = e.target.files;
+    // Get the file name and size
+    const { name: fileName, size } = file;
+    // Convert size in bytes to kilo bytes
+    const fileSize = (size / 1000).toFixed(2);
+    // Set the text content
+    const fileNameAndSize = `${fileName} - ${fileSize}KB`;
+    document.querySelector('.file-name').textContent = fileNameAndSize;
+  });
+
   function validate(form) {
 
 
@@ -158,7 +171,19 @@
       alert('O campo descrição não pode ser vazio');
       return false;
     } else {
-      return confirm('Você realmente quer cadastrar esse produto?');
+      return confirm('Você realmente quer cadastrar esse produto?')
+      const file = document.querySelector('#file');
+      file.addEventListener('change', (e) => {
+        // Get the selected file
+        const [file] = e.target.files;
+        // Get the file name and size
+        const { name: fileName, size } = file;
+        // Convert size in bytes to kilo bytes
+        const fileSize = (size / 1000).toFixed(2);
+        // Set the text content
+        const fileNameAndSize = `${fileName} - ${fileSize}KB`;
+        document.querySelector('.file-name').textContent = fileNameAndSize;
+      });;
     }
   }
 

@@ -73,7 +73,8 @@ const produtoSchema = new mongoose.Schema({
   utilizacao: String,
   familia: String,
   origem: String,
-  nf: Number
+  nf: Number,
+  anexoNome: String,
 });
 
 const maquinaSchema = new mongoose.Schema({
@@ -338,6 +339,23 @@ app.get('/public/anexos/:anexoNome', function(req, res){
   if(req.isAuthenticated()){
     var options = {
       root: path.join(__dirname + "\\public\\anexos")
+  };
+   
+  var fileName = req.params.anexoNome;
+  res.sendFile(fileName, options, function (err) {
+      if (err) {
+          res.send(err);
+      }
+  });
+  }else{
+    res.redirect('/login')
+  }
+})
+
+app.get('/public/anexos/produtos/:anexoNome', function(req, res){
+  if(req.isAuthenticated()){
+    var options = {
+      root: path.join(__dirname + "\\public\\anexos\\produtos")
   };
    
   var fileName = req.params.anexoNome;
@@ -624,7 +642,7 @@ app.post("/cadastroproduto", function(req, res){
               console.log(err)
           }else{
             let count2 = count + 1
-            file.mv('./public/anexos/' + count2 + "-" + filename, function(err){
+            file.mv('./public/anexos/produtos/' + count2 + "-" + filename, function(err){
               if (err){
                 res.send("Erro ao subir arquivo. Favor abrir chamado.")
               }else{
@@ -632,15 +650,14 @@ app.post("/cadastroproduto", function(req, res){
                   nome: req.body.nome,
                   descri: req.body.descri,
                   codigo: req.body.codigo,
-                  empresa: req.body.empresa,
-                  urgencia: req.body.urgencia,
-                  area: req.body.area,
-                  atividade: req.body.atividade,
-                  requisitante: req.body.requisitante,
-                  designado: '',
+                  ncm: req.body.ncm,
+                  gtin: req.body.gtin,
+                  categoria: req.body.categoria,
+                  un: req.body.un,
+                  utilizacao: req.body.utilizacao,
+                  familia: req.body.familia,
                   anexoNome: count2 + "-" + filename,
-                  resposta: '',
-                  arquivado: '',
+                  origem: req.body.familia,
                 })
                 produto.save(function(err){
                   if(err){
@@ -658,18 +675,17 @@ app.post("/cadastroproduto", function(req, res){
       }else{
         let count2 = count + 1
         const produto = new Produto({
-          idChamado: count2,
-          setor: req.body.setor,
+          nome: req.body.nome,
           descri: req.body.descri,
-          empresa: req.body.empresa,
-          urgencia: req.body.urgencia,
-          area: req.body.area,
-          atividade: req.body.atividade,
-          requisitante: req.body.requisitante,
-          designado: '',
-          anexoNome: '',
-          resposta: '',
-          arquivado: '',
+          codigo: req.body.codigo,
+          ncm: req.body.ncm,
+          gtin: req.body.gtin,
+          categoria: req.body.categoria,
+          un: req.body.un,
+          utilizacao: req.body.utilizacao,
+          familia: req.body.familia,
+          origem: req.body.origem,
+          anexoNome: 'default-placeholder.png',
         })
         produto.save(function(err){
           if(err){
