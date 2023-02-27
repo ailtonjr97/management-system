@@ -15,6 +15,7 @@ const path = require("path");
 const formidable = require('formidable');
 const upload = require ('express-fileupload')
 var nodemailer = require('nodemailer');
+const puppeteer = require('puppeteer');
 require('dotenv').config()
 
 const app = express();
@@ -717,6 +718,40 @@ app.get("/produtos", (req, res) => {
     res.redirect('/login')
   }
 });
+
+(async () => {
+  const browser = await puppeteer.launch({
+  executablePath: 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe',
+  headless: false,
+
+   });
+   function delay(time) {
+    return new Promise(function(resolve) { 
+        setTimeout(resolve, time)
+    });
+  }
+   const page = await browser.newPage();
+   await page.setViewport({ width: 1280, height: 800 })
+   await page.goto('https://tcloud.totvs.com.br/login')
+   const example = await page.$('.form-control');
+   await example.type('informatica04@fibracem.com');
+   page.keyboard.press('Enter');
+   await delay(2000);
+   await page.type('#emailAddress', 'informatica04@fibracem.com');
+   await page.type('#password', process.env.SENHATOTVS);
+   page.keyboard.press('Enter');
+   await delay(10000);
+   await page.goto('https://tcloud.totvs.com.br/produto/protheus?topology=135676&tab=2.1');
+   await delay(8000);
+   await page.evaluate(() => {
+    let elements = document.getElementsByClassName('CodeMirror-line');
+    for (let element of elements)
+        element.innerText = "select * from SB1010";
+    });
+
+    await page.waitForSelector("#page-wrapper > div > div.col.background-page-global-internal > tc-protheus > div.col-12.env-content.ng-star-inserted > div.row > div.col-12.m-b.ambiente-content > tc-topologie > div:nth-child(3) > div > div > div > div.row.ng-star-inserted > div > div > div > div > tc-sql-editor > div > div.col-10.resultContainer > div:nth-child(1) > div > div.editor-btn-wrap.text-right > button")
+    await page.click("#page-wrapper > div > div.col.background-page-global-internal > tc-protheus > div.col-12.env-content.ng-star-inserted > div.row > div.col-12.m-b.ambiente-content > tc-topologie > div:nth-child(3) > div > div > div > div.row.ng-star-inserted > div > div > div > div > tc-sql-editor > div > div.col-10.resultContainer > div:nth-child(1) > div > div.editor-btn-wrap.text-right > button")
+   })();
 //////////////////////////////////////////////////////////////////////////////////////
 app.listen(5000, function() {
   console.log("Server started on port 5000");
