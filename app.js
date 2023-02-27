@@ -725,13 +725,14 @@ app.get("/produtos", (req, res) => {
   headless: false,
 
    });
+
    function delay(time) {
     return new Promise(function(resolve) { 
         setTimeout(resolve, time)
     });
   }
    const page = await browser.newPage();
-   await page.setViewport({ width: 1280, height: 800 })
+   await page.setViewport({ width: 1600, height: 800 })
    await page.goto('https://tcloud.totvs.com.br/login')
    const example = await page.$('.form-control');
    await example.type('informatica04@fibracem.com');
@@ -743,14 +744,19 @@ app.get("/produtos", (req, res) => {
    await delay(10000);
    await page.goto('https://tcloud.totvs.com.br/produto/protheus?topology=135676&tab=2.1');
    await delay(8000);
-   await page.evaluate(() => {
-    let elements = document.getElementsByClassName('CodeMirror-line');
-    for (let element of elements)
-        element.innerText = "select * from SB1010";
-    });
-
+   await page.waitForSelector("#page-wrapper > div > div.col.background-page-global-internal > tc-protheus > div.col-12.env-content.ng-star-inserted > div.row > div.col-12.m-b.ambiente-content > tc-topologie > div:nth-child(3) > div > div > div > div.row.ng-star-inserted > div > div > div > div > tc-sql-editor > div > div.col-10.resultContainer > div:nth-child(1) > div > div.row.m-b-xs > div > div > div.col.text-right.btn-wrap.align-self-center > button:nth-child(1)")
+   await page.click("#page-wrapper > div > div.col.background-page-global-internal > tc-protheus > div.col-12.env-content.ng-star-inserted > div.row > div.col-12.m-b.ambiente-content > tc-topologie > div:nth-child(3) > div > div > div > div.row.ng-star-inserted > div > div > div > div > tc-sql-editor > div > div.col-10.resultContainer > div:nth-child(1) > div > div.row.m-b-xs > div > div > div.col.text-right.btn-wrap.align-self-center > button:nth-child(1)")
+    await delay(1000);
+    await page.waitForSelector("#page-wrapper > div > div.col.background-page-global-internal > tc-protheus > div.col-12.env-content.ng-star-inserted > div.row > div.col-12.m-b.ambiente-content > tc-topologie > div:nth-child(3) > div > div > div > div.row.ng-star-inserted > div > div > div > div > tc-sql-editor > div > div.col-10.resultContainer > div:nth-child(1) > div > div.form-group.row.consult-select.ng-star-inserted > div > div > select")
+    await page.click("#page-wrapper > div > div.col.background-page-global-internal > tc-protheus > div.col-12.env-content.ng-star-inserted > div.row > div.col-12.m-b.ambiente-content > tc-topologie > div:nth-child(3) > div > div > div > div.row.ng-star-inserted > div > div > div > div > tc-sql-editor > div > div.col-10.resultContainer > div:nth-child(1) > div > div.form-group.row.consult-select.ng-star-inserted > div > div > select")
+    await delay(1000)
+    page.keyboard.press('ArrowDown');
+    page.keyboard.press('Enter');
+    await delay(1000)
     await page.waitForSelector("#page-wrapper > div > div.col.background-page-global-internal > tc-protheus > div.col-12.env-content.ng-star-inserted > div.row > div.col-12.m-b.ambiente-content > tc-topologie > div:nth-child(3) > div > div > div > div.row.ng-star-inserted > div > div > div > div > tc-sql-editor > div > div.col-10.resultContainer > div:nth-child(1) > div > div.editor-btn-wrap.text-right > button")
     await page.click("#page-wrapper > div > div.col.background-page-global-internal > tc-protheus > div.col-12.env-content.ng-star-inserted > div.row > div.col-12.m-b.ambiente-content > tc-topologie > div:nth-child(3) > div > div > div > div.row.ng-star-inserted > div > div > div > div > tc-sql-editor > div > div.col-10.resultContainer > div:nth-child(1) > div > div.editor-btn-wrap.text-right > button")
+    await page.waitForSelector("#page-wrapper > div > div.col.background-page-global-internal > tc-protheus > div.col-12.env-content.ng-star-inserted > div.row > div.col-12.m-b.ambiente-content > tc-topologie > div:nth-child(3) > div > div > div > div.row.ng-star-inserted > div > div > div > div > tc-sql-editor > div > div.col-10.resultContainer > div:nth-child(2) > div > div > p:nth-child(2) > a")
+    await page.click("#page-wrapper > div > div.col.background-page-global-internal > tc-protheus > div.col-12.env-content.ng-star-inserted > div.row > div.col-12.m-b.ambiente-content > tc-topologie > div:nth-child(3) > div > div > div > div.row.ng-star-inserted > div > div > div > div > tc-sql-editor > div > div.col-10.resultContainer > div:nth-child(2) > div > div > p:nth-child(2) > a")
    })();
 //////////////////////////////////////////////////////////////////////////////////////
 app.listen(5000, function() {
