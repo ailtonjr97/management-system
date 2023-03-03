@@ -92,6 +92,29 @@
       </div>
       <div class="col-lg">
         <div class="form-floating">
+          <select class="form-select" id="tipoSelect" aria-label="Floating label" name="tipo">
+            <option class='valor'></option>
+            <option class='valor'>PL</option>
+            <option class='valor'>MP</option>
+            <option class='valor'>SV</option>
+            <option class='valor'>MC</option>
+          </select>
+          <label for="tipoSelect">Tipo:</label>
+        </div>
+      </div>
+      <div class="col-lg">
+        <div class="form-floating">
+          <select class="form-select" id="grupoSelect" aria-label="Floating label" name="grupo">
+            <option class='valor'></option>
+            <option class='valor' value="0001">Resinas plásticas / pigmentos</option>
+            <option class='valor' value="0002">Borrachas</option>
+            <option class='valor' value="0003">Chapas / Barras / Perfis</option>
+          </select>
+          <label for="grupoSelect">Grupo:</label>
+        </div>
+      </div>
+      <div class="col-lg">
+        <div class="form-floating">
           <input class="form-control" id="ncmInput" type="number" name='ncm'>
           <label for="ncmInput">NCM:</label>
         </div>
@@ -100,16 +123,6 @@
         <div class="form-floating">
           <input class="form-control" id="gtinInput" type="number" name='gtin'>
           <label for="ncmInput">GTIN:</label>
-        </div>
-      </div>
-      <div class="col-lg">
-        <div class="form-floating">
-          <select class="form-select" id="classificacaoSelect" aria-label="Floating label" name="categoria">
-            <option class='valor'></option>
-            <option class='valor'>Categoria 1</option>
-            <option class='valor'>Categoria 2</option>
-          </select>
-          <label for="classificacaoSelect">Categoria:</label>
         </div>
       </div>
     </div>

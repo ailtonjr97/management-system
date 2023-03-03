@@ -1,11 +1,6 @@
 <%- include('partials/header') %>
 
 <style>
-  *{
-    box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-}
 body{
     font-family: Helvetica;
     -webkit-font-smoothing: antialiased;
@@ -27,7 +22,7 @@ h2{
 
 .fl-table {
     border-radius: 5px;
-    font-size: 12px;
+    font-size: 15px;
     font-weight: normal;
     border: none;
     border-collapse: collapse;
@@ -44,7 +39,7 @@ h2{
 
 .fl-table td {
     border-right: 1px solid #f8f8f8;
-    font-size: 12px;
+    font-size: 15px;
 }
 
 .fl-table thead th {
@@ -129,7 +124,7 @@ h2{
 }
 </style>
 
-<div style="padding: 2%;">
+<div style="padding: 1.5%;">
   <a class="btn btn-success mb-2" href="/cadastroproduto">Novo Produto</a>
   <div class="row mb-2">
     <div class="col-lg-6">
@@ -148,22 +143,24 @@ h2{
   <div class="table-wrapper">
       <table class="fl-table" id="myTable">
           <thead>
-          <tr>
+          <tr style="height: 25px;">
               <th>Código</th>
               <th>Nome</th>
-              <th>Header 3</th>
-              <th>Header 4</th>
-              <th>Header 5</th>
+              <th>Tipo</th>
+              <th>Unidade</th>
+              <th>Grupo</th>
           </tr>
           </thead>
           <tbody>
+          <%produtos.forEach(function(produto){ %>
           <tr>
-              <td>Content 1</td>
-              <td>Content 1</td>
-              <td>Content 1</td>
-              <td>Content 1</td>
-              <td>Content 1</td>
+              <td><%=produto.codigo%></td>
+              <td><%=produto.nome%></td>
+              <td><%=produto.tipo%></td>
+              <td><%=produto.un%></td>
+              <td><%=produto.grupo%></td>
           </tr>
+          <%})%>
           <tbody>
       </table>
   </div>
