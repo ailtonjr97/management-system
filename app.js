@@ -709,7 +709,7 @@ app.get("/produtos", (req, res) => {
             chamado: chamado,
             user: user,
             logado: req.user.realNome,
-            produto: produto
+            produtos: produto
           });
         });
     });
@@ -718,7 +718,8 @@ app.get("/produtos", (req, res) => {
     res.redirect('/login')
   }
 });
-
+//////////////////////////////////////////////////////////////////////////////
+function roboTOTVS(){
 (async () => {
   const browser = await puppeteer.launch({
   executablePath: 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe',
@@ -735,14 +736,14 @@ app.get("/produtos", (req, res) => {
    await page.setViewport({ width: 1600, height: 800 })
    await page.goto('https://tcloud.totvs.com.br/login')
    const example = await page.$('.form-control');
-   await example.type('informatica04@fibracem.com');
+   await example.type(process.env.EMAILINTRANET);
    page.keyboard.press('Enter');
    await delay(2000);
-   await page.type('#emailAddress', 'informatica04@fibracem.com');
+   await page.type('#emailAddress', process.env.EMAILINTRANET);
    await page.type('#password', process.env.SENHATOTVS);
    page.keyboard.press('Enter');
    await delay(10000);
-   await page.goto('https://tcloud.totvs.com.br/produto/protheus?topology=135676&tab=2.1');
+   await page.goto(process.env.SITETOTVS);
    await delay(8000);
    await page.waitForSelector("#page-wrapper > div > div.col.background-page-global-internal > tc-protheus > div.col-12.env-content.ng-star-inserted > div.row > div.col-12.m-b.ambiente-content > tc-topologie > div:nth-child(3) > div > div > div > div.row.ng-star-inserted > div > div > div > div > tc-sql-editor > div > div.col-10.resultContainer > div:nth-child(1) > div > div.row.m-b-xs > div > div > div.col.text-right.btn-wrap.align-self-center > button:nth-child(1)")
    await page.click("#page-wrapper > div > div.col.background-page-global-internal > tc-protheus > div.col-12.env-content.ng-star-inserted > div.row > div.col-12.m-b.ambiente-content > tc-topologie > div:nth-child(3) > div > div > div > div.row.ng-star-inserted > div > div > div > div > tc-sql-editor > div > div.col-10.resultContainer > div:nth-child(1) > div > div.row.m-b-xs > div > div > div.col.text-right.btn-wrap.align-self-center > button:nth-child(1)")
@@ -758,6 +759,10 @@ app.get("/produtos", (req, res) => {
    await page.waitForSelector("#page-wrapper > div > div.col.background-page-global-internal > tc-protheus > div.col-12.env-content.ng-star-inserted > div.row > div.col-12.m-b.ambiente-content > tc-topologie > div:nth-child(3) > div > div > div > div.row.ng-star-inserted > div > div > div > div > tc-sql-editor > div > div.col-10.resultContainer > div:nth-child(2) > div > div > p:nth-child(2) > a")
    await page.click("#page-wrapper > div > div.col.background-page-global-internal > tc-protheus > div.col-12.env-content.ng-star-inserted > div.row > div.col-12.m-b.ambiente-content > tc-topologie > div:nth-child(3) > div > div > div > div.row.ng-star-inserted > div > div > div > div > tc-sql-editor > div > div.col-10.resultContainer > div:nth-child(2) > div > div > p:nth-child(2) > a")
    })();
+  }
+////////////////////////////////////////////////////////////////////////////////////////
+
+
 //////////////////////////////////////////////////////////////////////////////////////
 app.listen(5000, function() {
   console.log("Server started on port 5000");
