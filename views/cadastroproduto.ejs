@@ -106,7 +106,7 @@
         <div class="form-floating">
           <select class="form-select" id="grupoSelect" aria-label="Floating label" name="grupo">
             <option class='valor'></option>
-            <option class='valor' value="0001">Resinas plásticas / pigmentos</option>
+            <option class='valor' value="0001">Resinas plásticas / Pigmentos</option>
             <option class='valor' value="0002">Borrachas</option>
             <option class='valor' value="0003">Chapas / Barras / Perfis</option>
           </select>
@@ -180,10 +180,14 @@
   function validate(form) {
 
 
-    if (document.getElementsByName('descri')[0].value == '') {
-      alert('O campo descrição não pode ser vazio');
+    if (document.getElementsByName('nome')[0].value == '') {
+      alert('O campo "nome" não pode ser vazio');
       return false;
-    } else {
+    } else if(document.getElementsByName('codigo')[0].value == ''){
+      alert('O campo "código" não pode ser vazio');
+      return false;
+    }
+     else {
       return confirm('Você realmente quer cadastrar esse produto?')
       const file = document.querySelector('#file');
       file.addEventListener('change', (e) => {

@@ -122,10 +122,52 @@ h2{
         text-align: center;
     }
 }
+
+.button-8 {
+  background-color: #e1ecf4;
+  border-radius: 3px;
+  border: 1px solid #7aa7c7;
+  box-shadow: rgba(255, 255, 255, .7) 0 1px 0 0 inset;
+  box-sizing: border-box;
+  color: #39739d;
+  cursor: pointer;
+  display: inline-block;
+  font-family: -apple-system,system-ui,"Segoe UI","Liberation Sans",sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.15385;
+  margin: 0;
+  outline: none;
+  padding: 8px .8em;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: baseline;
+  white-space: nowrap;
+}
+
+.button-8:hover,
+.button-8:focus {
+  background-color: #b3d3ea;
+  color: #2c5777;
+}
+
+.button-8:focus {
+  box-shadow: 0 0 0 4px rgba(0, 149, 255, .15);
+}
+
+.button-8:active {
+  background-color: #a0c7e4;
+  box-shadow: none;
+  color: #2c5777;
+}
 </style>
 
 <div style="padding: 1.5%;">
-  <a class="btn btn-success mb-2" href="/cadastroproduto">Novo Produto</a>
+  <a class="button-8 mb-2" href="/cadastroproduto">Novo Produto</a>
   <div class="row mb-2">
     <div class="col-lg-6">
       <div class="form-floating">
@@ -149,6 +191,7 @@ h2{
               <th>Tipo</th>
               <th>Unidade</th>
               <th>Grupo</th>
+              <th>Ações</th>
           </tr>
           </thead>
           <tbody>
@@ -159,7 +202,93 @@ h2{
               <td><%=produto.tipo%></td>
               <td><%=produto.un%></td>
               <td><%=produto.grupo%></td>
+              <td><a class="button-8 mb-2" data-bs-toggle="modal" data-bs-target="#teste<%=produto._id%>">Editar</a></td>
           </tr>
+          <div class="modal fade" id="teste<%=produto._id%>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+              <div class="modal-content" style="bottom: 25px; ">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel"><%=produto.nome%></h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                      <form action="/verchamadomkt" method="post">
+                        <div class="col-lg mt-1">
+                            <div class="form-floating">
+                                <select class="form-select" id="empresaSelect" aria-label="Floating label" name="empresa">
+                                    <option class='valor'></option>
+                                    <option class='valor'>Matriz</option>
+                                    <option class='valor'>CDD - Linhares</option>
+                                    <option class='valor'>Indústria - Linhares</option>
+                                    <option class='valor'>CD - Pinhais</option>
+                                    <option class='valor'>Injeções</option>
+                                </select>
+                                <label for="empresaSelect">Empresa:</label>
+                            </div>
+                        </div>
+                        <div class="col-lg mt-2">
+                            <div class="form-floating">
+                                <select class="form-select" id="urgenciaSelect" aria-label="Floating label" name="urgencia">
+                                    <option class='valor'></option>
+                                    <option class='valor'>Normal</option>
+                                    <option class='valor'>Urgente</option>
+                                    <option class='valor'>Crítico</option>
+                                </select>
+                                <label for="urgenciaSelect">Urgência:</label>
+                            </div>
+                        </div>
+                        <div class="col-lg mt-2">
+                            <div class="form-floating">
+                              <select class="form-select" id="areaSelect" aria-label="Floating label" name="area">
+                                <option class='valor'></option>
+                                <option class='valor'>Desenhos</option>
+                                <option class='valor'>Artes</option>
+                                <option class='valor'>E-mail</option>
+                              </select>
+                              <label for="areaSelect">Área de atuação:</label>
+                            </div>
+                          </div>
+                          <div class="col-lg mt-2">
+                            <div class="form-floating">
+                              <select class="form-select" id="atividadeSelect" aria-label="Floating label" name="atividade">
+                                <option class='valor'></option>
+                                <option class='valor'>Photoshop</option>
+                                <option class='valor'>Adobe</option>
+                                <option class='valor'>After Effects</option>
+                              </select>
+                              <label for="atividadeSelect">Atividade:</label>
+                            </div>
+                          </div>
+                          <div class="col-lg mt-2">
+                            <div class="form-floating">
+                              <select class="form-select" id="designadoSelect" aria-label="Floating label" name="designado">
+                                <option class='valor'></option>
+                                <option class='valor'></option>
+                                <%  user.forEach(function(users){ %>
+                                <option class='valor'><%=users.realNome%></option>
+                                <% }) %>
+                              </select>
+                              <label for="designadoSelect">Designado:</label>
+                            </div>
+                          </div>
+                          <div class="col-lg mt-2">
+                            <div class="form-floating">
+                              <select class="form-select" id="designadoSelect" aria-label="Floating label" name="arquivado">
+                                <option class='valor'>Não</option>
+                                <option class='valor'>Sim</option>
+                              </select>
+                              <label for="designadoSelect">Arquivar chamado?</label>
+                            </div>
+                          </div>
+                    </div>
+                  <div class="modal-footer">
+                <button type="button" class="button-8" style="margin-right: 1%;" data-bs-dismiss="modal">Fechar</button>
+                <button type="submit" class="button-8" style='text-align: center;' name="idChamadoPost" value="<%=produtos._id%>">Salvar</button>
+                </div>
+              </form>
+              </div>
+            </div>
+          </div>
           <%})%>
           <tbody>
       </table>
