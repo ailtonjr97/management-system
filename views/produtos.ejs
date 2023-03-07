@@ -212,78 +212,89 @@ h2{
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                      <form action="/verchamadomkt" method="post">
-                        <div class="col-lg mt-1">
-                            <div class="form-floating">
-                                <select class="form-select" id="empresaSelect" aria-label="Floating label" name="empresa">
-                                    <option class='valor'></option>
-                                    <option class='valor'>Matriz</option>
-                                    <option class='valor'>CDD - Linhares</option>
-                                    <option class='valor'>Indústria - Linhares</option>
-                                    <option class='valor'>CD - Pinhais</option>
-                                    <option class='valor'>Injeções</option>
-                                </select>
-                                <label for="empresaSelect">Empresa:</label>
-                            </div>
-                        </div>
+                      <form action="/alteraProduto" method="post">
                         <div class="col-lg mt-2">
+                          <div class="col-lg">
                             <div class="form-floating">
-                                <select class="form-select" id="urgenciaSelect" aria-label="Floating label" name="urgencia">
-                                    <option class='valor'></option>
-                                    <option class='valor'>Normal</option>
-                                    <option class='valor'>Urgente</option>
-                                    <option class='valor'>Crítico</option>
-                                </select>
-                                <label for="urgenciaSelect">Urgência:</label>
+                                <textarea name="descri" rows="2" style="border: 1px solid #ced4da; border-radius: 0.25rem; width: 100%;"><%=produto.descri%></textarea>
                             </div>
+                          </div>
                         </div>
-                        <div class="col-lg mt-2">
+                        <div class="row mt-2">
+                          <div class="col-md-4">
                             <div class="form-floating">
-                              <select class="form-select" id="areaSelect" aria-label="Floating label" name="area">
-                                <option class='valor'></option>
-                                <option class='valor'>Desenhos</option>
-                                <option class='valor'>Artes</option>
-                                <option class='valor'>E-mail</option>
-                              </select>
-                              <label for="areaSelect">Área de atuação:</label>
+                              <input class="form-control" id="codigoInput" name='codigo'>
+                              <label for="codigoInput">Código:</label>
                             </div>
                           </div>
-                          <div class="col-lg mt-2">
+                          <div class="col-md-4">
                             <div class="form-floating">
-                              <select class="form-select" id="atividadeSelect" aria-label="Floating label" name="atividade">
+                              <select class="form-select" id="tipoSelect" aria-label="Floating label" name="tipo">
                                 <option class='valor'></option>
-                                <option class='valor'>Photoshop</option>
-                                <option class='valor'>Adobe</option>
-                                <option class='valor'>After Effects</option>
+                                <option class='valor'>PL</option>
+                                <option class='valor'>MP</option>
+                                <option class='valor'>SV</option>
+                                <option class='valor'>MC</option>
                               </select>
-                              <label for="atividadeSelect">Atividade:</label>
+                              <label for="tipoSelect">Tipo:</label>
                             </div>
                           </div>
-                          <div class="col-lg mt-2">
+                          <div class="col-md-4">
                             <div class="form-floating">
-                              <select class="form-select" id="designadoSelect" aria-label="Floating label" name="designado">
-                                <option class='valor'></option>
-                                <option class='valor'></option>
-                                <%  user.forEach(function(users){ %>
-                                <option class='valor'><%=users.realNome%></option>
-                                <% }) %>
-                              </select>
-                              <label for="designadoSelect">Designado:</label>
+                              <input class="form-control" id="ncmInput" type="number" name='ncm'>
+                              <label for="ncmInput">NCM:</label>
                             </div>
                           </div>
-                          <div class="col-lg mt-2">
+                        </div>
+                        <div class="row mt-2">
+                          <div class="col-md-4">
                             <div class="form-floating">
-                              <select class="form-select" id="designadoSelect" aria-label="Floating label" name="arquivado">
-                                <option class='valor'>Não</option>
-                                <option class='valor'>Sim</option>
-                              </select>
-                              <label for="designadoSelect">Arquivar chamado?</label>
+                              <input class="form-control" id="gtinInput" type="number" name='gtin'>
+                              <label for="ncmInput">GTIN:</label>
                             </div>
                           </div>
+                          <div class="col-md-4">
+                            <div class="form-floating">
+                              <select class="form-select" id="grupoSelect" aria-label="Floating label" name="grupo">
+                                <option class='valor'></option>
+                                <option class='valor' value="0001">Resinas plásticas / Pigmentos</option>
+                                <option class='valor' value="0002">Borrachas</option>
+                                <option class='valor' value="0003">Chapas / Barras / Perfis</option>
+                              </select>
+                              <label for="grupoSelect">Grupo:</label>
+                            </div>
+                          </div>
+                          <div class="col-md-4">
+                            <div class="form-floating">
+                              <input class="form-control" id="unInput" type="text" name='un' required>
+                              <label for="unInput">UN:</label>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row mt-2">
+                          <div class="col-lg">
+                            <div class="form-floating">
+                              <input class="form-control" id="utilizacaoInput" type="text" name='utilizacao'>
+                              <label for="utilizacaoInput">Utilização:</label>
+                            </div>
+                          </div>
+                          <div class="col-lg">
+                            <div class="form-floating">
+                              <input class="form-control" id="familiaInput" type="text" name='familia'>
+                              <label for="familiaInput">Família:</label>
+                            </div>
+                          </div>
+                          <div class="col-lg">
+                            <div class="form-floating">
+                              <input class="form-control" id="origemInput" type="text" name='origem'>
+                              <label for="origemInput">Origem:</label>
+                            </div>
+                          </div>
+                        </div>
                     </div>
                   <div class="modal-footer">
                 <button type="button" class="button-8" style="margin-right: 1%;" data-bs-dismiss="modal">Fechar</button>
-                <button type="submit" class="button-8" style='text-align: center;' name="idChamadoPost" value="<%=produtos._id%>">Salvar</button>
+                <button type="submit" class="button-8" style='text-align: center;' name="idProdutoPost" value="<%=produto._id%>">Salvar</button>
                 </div>
               </form>
               </div>
