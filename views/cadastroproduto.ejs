@@ -1,9 +1,9 @@
 <%- include('partials/header') %>
 
 <style>
-  #rowMestra {
+  .row {
     max-width: 99%;
-    margin-left: 1%
+    margin-left: 0.5%
   }
 
   #titulo {
@@ -58,16 +58,65 @@
   font-size: 0.85rem;
   color: #555;
 }
+
+.button-8 {
+  width: 100px;
+  background-color: #e1ecf4;
+  border-radius: 3px;
+  border: 1px solid #7aa7c7;
+  box-shadow: rgba(255, 255, 255, .7) 0 1px 0 0 inset;
+  box-sizing: border-box;
+  color: #39739d;
+  cursor: pointer;
+  display: inline-block;
+  font-family: -apple-system,system-ui,"Segoe UI","Liberation Sans",sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.15385;
+  margin: 0;
+  outline: none;
+  padding: 8px .8em;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: baseline;
+  white-space: nowrap;
+}
+
+.button-8:hover,
+.button-8:focus {
+  background-color: #b3d3ea;
+  color: #2c5777;
+}
+
+.button-8:focus {
+  box-shadow: 0 0 0 4px rgba(0, 149, 255, .15);
+}
+
+.button-8:active {
+  background-color: #a0c7e4;
+  box-shadow: none;
+  color: #2c5777;
+}
 </style>
 
 <form action="/cadastroproduto" method="post" enctype="multipart/form-data" onsubmit="return validate(this);">
-  <div class="row" id='rowMestra'>
-    <div class="row" id='descritivoCadastro'>
+    <div class="row" id='descritivoCadastro' style="margin-left: none;">
       <div class="col-lg-12 mt-2" id='titulo'>
         <h3 class='descritivoCadastro'>Cadastro de Produto</h3>
       </div>
     </div>
-    <div class="row" id='rowTerceira'>
+      <div class="row mb-2">
+        <div class="col-lg-12">
+          <button type="button" class="button-8" style="margin-right: 1%;" data-bs-dismiss="modal" onclick="mostraBasico()">Básico</button>
+          <button type="button" class="button-8" style="margin-right: 1%;" data-bs-dismiss="modal" onclick="mostraFinanceiro()">Financeiro</button>
+        </div>
+      </div>
+      <!-- Aqui entra os botões do básico -->
+    <div class="row basico">
       <div class="col-lg">
         <div class="form-floating">
           <input class="form-control" id="nameInput" name='nome'>
@@ -75,7 +124,7 @@
         </div>
       </div>
     </div>
-    <div class="row mt-2" id='rowTerceira'>
+    <div class="row mt-2 basico" id='rowTerceira'>
       <div class="col-lg">
         <div class="form-floating">
           <input class="form-control" id="descricaoInput" name='descri'>
@@ -83,7 +132,7 @@
         </div>
       </div>
     </div>
-    <div class="row mt-2">
+    <div class="row mt-2 basico">
       <div class="col-lg">
         <div class="form-floating">
           <input class="form-control" id="codigoInput" name='codigo'>
@@ -126,7 +175,34 @@
         </div>
       </div>
     </div>
-    <div class="row mt-2">
+    <div class="row mt-2 basico">
+      <div class="col-lg">
+        <div class="form-floating">
+          <input class="form-control" id="unInput" type="text" name='un' required>
+          <label for="ncmInput">UN:</label>
+        </div>
+      </div>
+      <div class="col-lg">
+        <div class="form-floating">
+          <input class="form-control" id="utilizacaoInput" type="text" name='utilizacao'>
+          <label for="ncmInput">Utilização:</label>
+        </div>
+      </div>
+      <div class="col-lg">
+        <div class="form-floating">
+          <input class="form-control" id="familiaInput" type="text" name='familia'>
+          <label for="ncmInput">Família:</label>
+        </div>
+      </div>
+      <div class="col-lg">
+        <div class="form-floating">
+          <input class="form-control" id="origemInput" type="text" name='origem'>
+          <label for="ncmInput">Origem:</label>
+        </div>
+      </div>
+    </div>
+    <!-- Aqui entra os botões do financeiro -->
+    <div class="row mt-2 financeiro">
       <div class="col-lg">
         <div class="form-floating">
           <input class="form-control" id="unInput" type="text" name='un' required>
@@ -153,7 +229,7 @@
       </div>
     </div>
   </div>
-  <div class="file-input mt-3" style="margin-left: 2%;">
+  <div class="file-input mt-3" style="margin-left: 1.5%;">
     <input type="file" id="file" class="file" name="postImage">
     <label for="file">
       Escolher Anexo
@@ -164,6 +240,28 @@
 </form>
 
 <script>
+  for(i = 0; i < document.getElementsByClassName('financeiro').length; i++){
+    document.getElementsByClassName('financeiro')[i].style.display = 'none'
+  }
+
+function mostraBasico(){
+  for(i = 0; i < document.getElementsByClassName('basico').length; i++){
+    document.getElementsByClassName('basico')[i].style.display = 'flex'
+  }
+  for(i = 0; i < document.getElementsByClassName('financeiro').length; i++){
+    document.getElementsByClassName('financeiro')[i].style.display = 'none'
+  }
+}
+
+function mostraFinanceiro(){
+  for(i = 0; i < document.getElementsByClassName('financeiro').length; i++){
+    document.getElementsByClassName('financeiro')[i].style.display = 'flex'
+  }
+  for(i = 0; i < document.getElementsByClassName('basico').length; i++){
+    document.getElementsByClassName('basico')[i].style.display = 'none'
+  }
+}
+
   const file = document.querySelector('#file');
   file.addEventListener('change', (e) => {
     // Get the selected file

@@ -223,14 +223,14 @@ h2{
                         <div class="row mt-2">
                           <div class="col-md-4">
                             <div class="form-floating">
-                              <input class="form-control" id="codigoInput" name='codigo'>
+                              <input class="form-control" id="codigoInput" name='codigo' value="<%=produto.codigo%>">
                               <label for="codigoInput">Código:</label>
                             </div>
                           </div>
                           <div class="col-md-4">
                             <div class="form-floating">
                               <select class="form-select" id="tipoSelect" aria-label="Floating label" name="tipo">
-                                <option class='valor'></option>
+                                <option class='valor'><%=produto.tipo%></option>
                                 <option class='valor'>PL</option>
                                 <option class='valor'>MP</option>
                                 <option class='valor'>SV</option>
@@ -241,7 +241,7 @@ h2{
                           </div>
                           <div class="col-md-4">
                             <div class="form-floating">
-                              <input class="form-control" id="ncmInput" type="number" name='ncm'>
+                              <input class="form-control" id="ncmInput" type="number" name='ncm' value="<%=produto.ncm%>">
                               <label for="ncmInput">NCM:</label>
                             </div>
                           </div>
@@ -249,14 +249,14 @@ h2{
                         <div class="row mt-2">
                           <div class="col-md-4">
                             <div class="form-floating">
-                              <input class="form-control" id="gtinInput" type="number" name='gtin'>
+                              <input class="form-control" id="gtinInput" type="number" name='gtin' value="<%=produto.gtin%>">
                               <label for="ncmInput">GTIN:</label>
                             </div>
                           </div>
                           <div class="col-md-4">
                             <div class="form-floating">
                               <select class="form-select" id="grupoSelect" aria-label="Floating label" name="grupo">
-                                <option class='valor'></option>
+                                <option class='valor'><%=produto.grupo%></option>
                                 <option class='valor' value="0001">Resinas plásticas / Pigmentos</option>
                                 <option class='valor' value="0002">Borrachas</option>
                                 <option class='valor' value="0003">Chapas / Barras / Perfis</option>
@@ -266,7 +266,7 @@ h2{
                           </div>
                           <div class="col-md-4">
                             <div class="form-floating">
-                              <input class="form-control" id="unInput" type="text" name='un' required>
+                              <input class="form-control" id="unInput" type="text" name='un' value="<%=produto.un%>">
                               <label for="unInput">UN:</label>
                             </div>
                           </div>
@@ -274,19 +274,19 @@ h2{
                         <div class="row mt-2">
                           <div class="col-lg">
                             <div class="form-floating">
-                              <input class="form-control" id="utilizacaoInput" type="text" name='utilizacao'>
+                              <input class="form-control" id="utilizacaoInput" type="text" name='utilizacao' value="<%=produto.utilizacao%>">
                               <label for="utilizacaoInput">Utilização:</label>
                             </div>
                           </div>
                           <div class="col-lg">
                             <div class="form-floating">
-                              <input class="form-control" id="familiaInput" type="text" name='familia'>
+                              <input class="form-control" id="familiaInput" type="text" name='familia' value="<%=produto.familia%>">
                               <label for="familiaInput">Família:</label>
                             </div>
                           </div>
                           <div class="col-lg">
                             <div class="form-floating">
-                              <input class="form-control" id="origemInput" type="text" name='origem'>
+                              <input class="form-control" id="origemInput" type="text" name='origem' value="<%=produto.origem%>">
                               <label for="origemInput">Origem:</label>
                             </div>
                           </div>
