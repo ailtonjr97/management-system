@@ -77,6 +77,9 @@ const produtoSchema = new mongoose.Schema({
   origem: String,
   nf: Number,
   anexoNome: String,
+  ipi: Number,
+  icms: Number,
+  cofins: Number,
 });
 
 const maquinaSchema = new mongoose.Schema({
@@ -661,6 +664,9 @@ app.post("/cadastroproduto", function(req, res){
                   familia: req.body.familia,
                   anexoNome: count2 + "-" + filename,
                   origem: req.body.familia,
+                  ipi: req.body.ipi,
+                  icms: req.body.icms,
+                  cofins: req.body.cofins,
                 })
                 produto.save(function(err){
                   if(err){
@@ -690,6 +696,9 @@ app.post("/cadastroproduto", function(req, res){
           familia: req.body.familia,
           origem: req.body.origem,
           anexoNome: 'default-placeholder.png',
+          ipi: req.body.ipi,
+          icms: req.body.icms,
+          cofins: req.body.cofins,
         })
         produto.save(function(err){
           if(err){
@@ -781,6 +790,6 @@ function roboTOTVS(){
 
 //////////////////////////////////////////////////////////////////////////////////////
 app.listen(5000, function() {
-  console.log("Server started on port 8080");
+  console.log("Server started on port 5000");
 });
 
